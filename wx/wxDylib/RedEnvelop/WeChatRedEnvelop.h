@@ -24,6 +24,8 @@
 
 - (void)AddLocalMsg:(id)arg1 MsgWrap:(id)arg2 fixTime:(_Bool)arg3 NewMsgArriveNotify:(_Bool)arg4;
 
+- (id)GetMsg:(id)arg1 n64SvrID:(long long)arg2;
+- (id)GetRevokeMsgBySvrId:(long long)arg1;
 @end
 
 @interface CMessageWrap : NSObject
@@ -290,6 +292,8 @@
 @end
 
 @interface NewSettingViewController: MMUIViewController
+
+- (void)setting;
 
 - (void)reloadTableData;
 

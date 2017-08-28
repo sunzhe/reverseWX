@@ -4,6 +4,7 @@
 
 ## Build generated
 build/
+LatestBuild/
 DerivedData/
 
 ## Various settings
@@ -27,6 +28,7 @@ xcuserdata/
 *.ipa
 *.dSYM.zip
 *.dSYM
+*.app
 
 # CocoaPods
 #

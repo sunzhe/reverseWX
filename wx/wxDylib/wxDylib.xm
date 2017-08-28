@@ -12,6 +12,7 @@
 
 #import "FishConfigurationCenter.h"
 #import "MapView.h"
+#import "XMLReader.h"
 
 %hook MicroMessengerAppDelegate
 
@@ -217,53 +218,74 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
     
 }
 
+- (void)onRevokeMsgCgiReturn:(id)arg1{
+    %orig;
+}
 - (void)onRevokeMsg:(CMessageWrap *)arg1 {
-    
     if (![WBRedEnvelopConfig sharedConfig].revokeEnable) {
         %orig;
-    } else {
-        if ([arg1.m_nsContent rangeOfString:@"<session>"].location == NSNotFound) { return; }
-        if ([arg1.m_nsContent rangeOfString:@"<replacemsg>"].location == NSNotFound) { return; }
-        
-        NSString *(^parseSession)() = ^NSString *() {
-            NSUInteger startIndex = [arg1.m_nsContent rangeOfString:@"<session>"].location + @"<session>".length;
-            NSUInteger endIndex = [arg1.m_nsContent rangeOfString:@"</session>"].location;
-            NSRange range = NSMakeRange(startIndex, endIndex - startIndex);
-            return [arg1.m_nsContent substringWithRange:range];
-        };
-        
-        NSString *(^parseSenderName)() = ^NSString *() {
-            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<!\\[CDATA\\[(.*?)撤回了一条消息\\]\\]>" options:NSRegularExpressionCaseInsensitive error:nil];
-            
-            NSRange range = NSMakeRange(0, arg1.m_nsContent.length);
-            NSTextCheckingResult *result = [regex matchesInString:arg1.m_nsContent options:0 range:range].firstObject;
-            if (result.numberOfRanges < 2) { return nil; }
-            
-            return [arg1.m_nsContent substringWithRange:[result rangeAtIndex:1]];
-        };
-        
-        CMessageWrap *msgWrap = [[%c(CMessageWrap) alloc] initWithMsgType:0x2710];
-        BOOL isSender = [%c(CMessageWrap) isSenderFromMsgWrap:arg1];
-        
-        NSString *sendContent;
-        if (isSender) {
-            [msgWrap setM_nsFromUsr:arg1.m_nsToUsr];
-            [msgWrap setM_nsToUsr:arg1.m_nsFromUsr];
-            sendContent = @"你撤回一条消息";
-        } else {
-            [msgWrap setM_nsToUsr:arg1.m_nsToUsr];
-            [msgWrap setM_nsFromUsr:arg1.m_nsFromUsr];
-            
-            NSString *name = parseSenderName();
-            sendContent = [NSString stringWithFormat:@"拦截 %@ 的一条撤回消息", name ? name : arg1.m_nsFromUsr];
-        }
-        [msgWrap setM_uiStatus:0x4];
-        [msgWrap setM_nsContent:sendContent];
-        [msgWrap setM_uiCreateTime:[arg1 m_uiCreateTime]];
-        
-        [self AddLocalMsg:parseSession() MsgWrap:msgWrap fixTime:0x1 NewMsgArriveNotify:0x0];
+        return;
     }
+    //      xml 转 dict
+    NSError *error;
+    NSDictionary *msgDict = [XMLReader dictionaryForXMLString:arg1.m_nsContent error:&error];
+    
+    NSString *session = [msgDict valueForKeyPath:@"sysmsg.revokemsg.session.text"];
+    NSString *newmsgid = [msgDict valueForKeyPath:@"sysmsg.revokemsg.newmsgid.text"];
+    NSString *replacemsg = [msgDict valueForKeyPath:@"sysmsg.revokemsg.replacemsg.text"];
+    
+    if(error || !session || !newmsgid){
+        return;
+    }
+    
+    CMessageWrap *theMsg = [self GetMsg:session n64SvrID:[newmsgid longLongValue]];
+    if(!theMsg){
+        theMsg = [self GetRevokeMsgBySvrId:[newmsgid longLongValue]];
+    }
+    
+    //CContactMgr *contactManager = [[%c(MMServiceCenter) defaultCenter] getService:[%c(CContactMgr) class]];
+    //CContact *selfContact = [contactManager getSelfContact];
+    
+    BOOL isSender = [%c(CMessageWrap) isSenderFromMsgWrap:arg1];
+    
+    
+    CMessageWrap *msgWrap = [[%c(CMessageWrap) alloc] initWithMsgType:0x2710];
+
+    NSString *sendContent = replacemsg;
+    
+    if (isSender) {
+        [msgWrap setM_nsFromUsr:arg1.m_nsToUsr];
+        [msgWrap setM_nsToUsr:arg1.m_nsFromUsr];
+        
+        if (theMsg && theMsg.m_uiMessageType == 1) {
+            sendContent = [NSString stringWithFormat:@"你撤回一条消息:\n%@", theMsg.m_nsContent];
+        }
+    } else {
+        
+        [msgWrap setM_nsToUsr:arg1.m_nsToUsr];
+        [msgWrap setM_nsFromUsr:arg1.m_nsFromUsr];
+        
+        if (theMsg){
+            NSString *name = [replacemsg stringByReplacingOccurrencesOfString:@"撤回了一条消息" withString:@""];
+            if (theMsg.m_uiMessageType == 1) {
+                sendContent = [NSString stringWithFormat:@"拦截%@的一条撤回消息:\n%@", name, theMsg.m_nsContent];
+            }else{
+                sendContent = [NSString stringWithFormat:@"拦截%@的一条非文本撤回消息", name];
+            }
+        }
+    }
+    NSLog(@"撤回消息 = %@", sendContent);
+    [msgWrap setM_uiStatus:0x4];
+    [msgWrap setM_nsContent:sendContent];
+    [msgWrap setM_uiCreateTime:[arg1 m_uiCreateTime]];
+    [self AddLocalMsg:session MsgWrap:msgWrap fixTime:0x1 NewMsgArriveNotify:0x0];
 }
+
+- (id)GetMsg:(id)arg1 BizMsgClientID:(id)arg2{
+    id result = %orig;
+    return result;
+}
+
 - (id)GetMsgByCreateTime:(id)arg1 FromID:(unsigned int)arg2 FromCreateTime:(unsigned int)arg3 Limit:(unsigned int)arg4 LeftCount:(unsigned int*)arg5 FromSequence:(unsigned int)arg6{
     id result = %orig;
     if ([FishConfigurationCenter sharedInstance].chatIgnoreInfo[arg1].boolValue) {
@@ -428,6 +450,7 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
 }
 %end
 
+/*
 %hook MMLocationMgr
 - (void)locationManager:(id)arg1 didUpdateToLocation:(CLLocation*)arg2 fromLocation:(CLLocation*)arg3{
     
@@ -445,6 +468,20 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
     %orig;
 }
 %end
+//*/
+%hook CLLocation
+- (CLLocationCoordinate2D)coordinate{
+    CLLocationCoordinate2D coordinate = %orig;
+    NSDictionary *locationInfo = [FishConfigurationCenter sharedInstance].locationInfo;
+    double latitude = [locationInfo[@"latitude"] doubleValue];
+    double longitude = [locationInfo[@"longitude"] doubleValue];
+    if(longitude || latitude ){
+        coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+    }
+    return coordinate;
+}
+%end
+
 
 %hook FindFriendEntryViewController
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2{
@@ -454,3 +491,24 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
     return %orig;
 }
 %end
+
+%hook WCDeviceStepObject
+- (unsigned int)m7StepCount{
+    BOOL modifyToday = NO;
+    if ([FishConfigurationCenter sharedInstance].lastChangeStepCountDate){
+        NSCalendar *cal = [NSCalendar currentCalendar];
+        NSDateComponents *components = [cal components:(NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
+        NSDate *today = [cal dateFromComponents:components];
+        components = [cal components:(NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[FishConfigurationCenter sharedInstance].lastChangeStepCountDate];
+        NSDate *otherDate = [cal dateFromComponents:components];
+        if([today isEqualToDate:otherDate]) {
+            modifyToday = YES;
+        }
+    }
+    if ([FishConfigurationCenter sharedInstance].stepCount == 0 || !modifyToday) {
+        [FishConfigurationCenter sharedInstance].stepCount = %orig;
+    }
+    return (unsigned int)[FishConfigurationCenter sharedInstance].stepCount;
+}
+%end
+

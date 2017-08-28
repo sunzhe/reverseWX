@@ -1,0 +1,25 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+source 'https://github.com/AloneMonkey/MonkeyDevSpecs.git'
+use_frameworks!
+
+target 'wx' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for wx
+
+end
+
+target 'wxDylib' do
+
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+  # Pods for wxDylib
+  
+  #pod 'FLEX'
+  pod 'WeChatSelectAll'
+  pod 'WechatFunnyAt'
+  pod 'WechatPod'
+end

@@ -40,8 +40,12 @@
 		84575DF01F42D11A007663F8 /* WeChatRedEnvelopParam.h in Headers */ = {isa = PBXBuildFile; fileRef = 84575DD51F42D091007663F8 /* WeChatRedEnvelopParam.h */; };
 		84575DF51F42D322007663F8 /* FishConfigurationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 84575DF31F42D322007663F8 /* FishConfigurationCenter.h */; };
 		84575DF61F42D322007663F8 /* FishConfigurationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 84575DF41F42D322007663F8 /* FishConfigurationCenter.m */; };
+		8469DEAE1F54087500350591 /* XMLReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 8469DEAC1F54087500350591 /* XMLReader.h */; };
+		8469DEAF1F54087500350591 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469DEAD1F54087500350591 /* XMLReader.m */; };
 		84D3C8071F430F0C00703315 /* MapView.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D3C8051F430F0C00703315 /* MapView.h */; };
 		84D3C8081F430F0C00703315 /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D3C8061F430F0C00703315 /* MapView.m */; };
+		BCE861EBB829F7D5B6957C3C /* Pods_wxDylib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC907300128F226110DB6D4 /* Pods_wxDylib.framework */; };
+		F71DFDB777B64719B148F36C /* Pods_wx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51155BA86C4CF2DFEF3568E6 /* Pods_wx.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2430165CC143BE7DB37412C3 /* Pods-wx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wx.release.xcconfig"; path = "Pods/Target Support Files/Pods-wx/Pods-wx.release.xcconfig"; sourceTree = "<group>"; };
+		2835FA0DA7CA55FDCF603635 /* Pods-wx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wx/Pods-wx.debug.xcconfig"; sourceTree = "<group>"; };
+		2BC907300128F226110DB6D4 /* Pods_wxDylib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wxDylib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		51155BA86C4CF2DFEF3568E6 /* Pods_wx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84575D8C1F42CE86007663F8 /* wx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84575D901F42CE86007663F8 /* put ipa or app here */ = {isa = PBXFileReference; lastKnownFileType = text; name = "put ipa or app here"; path = "TargetApp/put ipa or app here"; sourceTree = "<group>"; };
 		84575D921F42CE86007663F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -92,8 +100,12 @@
 		84575DD61F42D091007663F8 /* WeChatRedEnvelopParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatRedEnvelopParam.m; sourceTree = "<group>"; };
 		84575DF31F42D322007663F8 /* FishConfigurationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishConfigurationCenter.h; sourceTree = "<group>"; };
 		84575DF41F42D322007663F8 /* FishConfigurationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishConfigurationCenter.m; sourceTree = "<group>"; };
+		8469DEAC1F54087500350591 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
+		8469DEAD1F54087500350591 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		84D3C8051F430F0C00703315 /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
 		84D3C8061F430F0C00703315 /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
+		8D57875F093C68E55CBFB2F9 /* Pods-wxDylib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wxDylib.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wxDylib/Pods-wxDylib.debug.xcconfig"; sourceTree = "<group>"; };
+		FC8302BB2527067492F55A70 /* Pods-wxDylib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wxDylib.release.xcconfig"; path = "Pods/Target Support Files/Pods-wxDylib/Pods-wxDylib.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84575DC11F42D024007663F8 /* libwxDylib.dylib in Frameworks */,
+				F71DFDB777B64719B148F36C /* Pods_wx.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,12 +127,24 @@
 				84575D9B1F42CE86007663F8 /* Cycript.framework in Frameworks */,
 				84575DA11F42CE86007663F8 /* Foundation.framework in Frameworks */,
 				84575DA31F42CE86007663F8 /* UIKit.framework in Frameworks */,
+				BCE861EBB829F7D5B6957C3C /* Pods_wxDylib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09F421A260FA07E7F3406BA6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2835FA0DA7CA55FDCF603635 /* Pods-wx.debug.xcconfig */,
+				2430165CC143BE7DB37412C3 /* Pods-wx.release.xcconfig */,
+				8D57875F093C68E55CBFB2F9 /* Pods-wxDylib.debug.xcconfig */,
+				FC8302BB2527067492F55A70 /* Pods-wxDylib.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		84575D821F42CE86007663F8 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +152,7 @@
 				84575DA41F42CE86007663F8 /* wxDylib */,
 				84575D991F42CE86007663F8 /* Frameworks */,
 				84575D8D1F42CE86007663F8 /* Products */,
+				09F421A260FA07E7F3406BA6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,6 +190,8 @@
 				84575D9E1F42CE86007663F8 /* RevealServer.framework */,
 				84575DA01F42CE86007663F8 /* Foundation.framework */,
 				84575DA21F42CE86007663F8 /* UIKit.framework */,
+				2BC907300128F226110DB6D4 /* Pods_wxDylib.framework */,
+				51155BA86C4CF2DFEF3568E6 /* Pods_wx.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -179,6 +207,8 @@
 				84575DF41F42D322007663F8 /* FishConfigurationCenter.m */,
 				84D3C8051F430F0C00703315 /* MapView.h */,
 				84D3C8061F430F0C00703315 /* MapView.m */,
+				8469DEAC1F54087500350591 /* XMLReader.h */,
+				8469DEAD1F54087500350591 /* XMLReader.m */,
 				84575DC41F42D091007663F8 /* RedEnvelop */,
 				84575DA71F42CE86007663F8 /* CaptainHook */,
 				84575DAA1F42CE86007663F8 /* AntiAntiDebug */,
@@ -259,6 +289,7 @@
 				84575DEF1F42D11A007663F8 /* WeChatRedEnvelop.h in Headers */,
 				84575DE91F42D116007663F8 /* WBMultiSelectGroupsViewController.h in Headers */,
 				84575DEA1F42D11A007663F8 /* WBReceiveRedEnvelopOperation.h in Headers */,
+				8469DEAE1F54087500350591 /* XMLReader.h in Headers */,
 				84575DB11F42CE86007663F8 /* fishhook.h in Headers */,
 				84D3C8071F430F0C00703315 /* MapView.h in Headers */,
 				84575DEB1F42D11A007663F8 /* WBRedEnvelopConfig.h in Headers */,
@@ -276,10 +307,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84575DBB1F42CE86007663F8 /* Build configuration list for PBXNativeTarget "wx" */;
 			buildPhases = (
+				F8FE6AA14E5927B496AD5BDA /* [CP] Check Pods Manifest.lock */,
 				84575D871F42CE86007663F8 /* Sources */,
 				84575D881F42CE86007663F8 /* Frameworks */,
 				84575D891F42CE86007663F8 /* Resources */,
 				84575D8A1F42CE86007663F8 /* ShellScript */,
+				63090C59A0D32A5FCCEABC72 /* [CP] Embed Pods Frameworks */,
+				D8070D31B2E8F76329DEDC71 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -295,10 +329,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84575DBE1F42CE86007663F8 /* Build configuration list for PBXNativeTarget "wxDylib" */;
 			buildPhases = (
+				8822370E4D542DF540687652 /* [CP] Check Pods Manifest.lock */,
 				84575D931F42CE86007663F8 /* ShellScript */,
 				84575D941F42CE86007663F8 /* Sources */,
 				84575D951F42CE86007663F8 /* Frameworks */,
 				84575D961F42CE86007663F8 /* Headers */,
+				9103774A4460BDD98C28E160 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -360,6 +396,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		63090C59A0D32A5FCCEABC72 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-wx/Pods-wx-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		84575D8A1F42CE86007663F8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -386,6 +437,66 @@
 			shellPath = /bin/sh;
 			shellScript = "/opt/MonkeyDev/bin/md --xcbp-logos";
 		};
+		8822370E4D542DF540687652 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9103774A4460BDD98C28E160 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-wxDylib/Pods-wxDylib-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D8070D31B2E8F76329DEDC71 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-wx/Pods-wx-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8FE6AA14E5927B496AD5BDA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -407,6 +518,7 @@
 				84575DAC1F42CE86007663F8 /* AntiAntiDebug.m in Sources */,
 				84575DB41F42CE86007663F8 /* wxDylib.mm in Sources */,
 				84575DE51F42D107007663F8 /* WBRedEnvelopTaskManager.m in Sources */,
+				8469DEAF1F54087500350591 /* XMLReader.m in Sources */,
 				84575DE71F42D10C007663F8 /* WeChatRedEnvelopParam.m in Sources */,
 				84575DE21F42D100007663F8 /* WBReceiveRedEnvelopOperation.m in Sources */,
 				84575DB81F42CE86007663F8 /* wxDylib.m in Sources */,
@@ -520,6 +632,7 @@
 		};
 		84575DBC1F42CE86007663F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2835FA0DA7CA55FDCF603635 /* Pods-wx.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = NK26XTE96R;
 				ENABLE_BITCODE = NO;
@@ -536,6 +649,7 @@
 		};
 		84575DBD1F42CE86007663F8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2430165CC143BE7DB37412C3 /* Pods-wx.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = NK26XTE96R;
 				ENABLE_BITCODE = NO;
@@ -552,6 +666,7 @@
 		};
 		84575DBF1F42CE86007663F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D57875F093C68E55CBFB2F9 /* Pods-wxDylib.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = NK26XTE96R;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -604,6 +719,7 @@
 		};
 		84575DC01F42CE86007663F8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC8302BB2527067492F55A70 /* Pods-wxDylib.release.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = NK26XTE96R;

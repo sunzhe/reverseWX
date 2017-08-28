@@ -10,6 +10,10 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 //#import "Masonry.h"
+@interface MMLocationMgr: NSObject
+- (id)getAddressByLocation:(struct CLLocationCoordinate2D)arg1;
+- (id)shortAddressFromAddressDic:(id)arg1;
+@end
 
 typedef void(^CustomAction)(id obj, int idx);
 

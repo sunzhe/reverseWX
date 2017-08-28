@@ -8,6 +8,10 @@
 
 #import "MapView.h"
 #import "FishConfigurationCenter.h"
+//@import WechatPod;
+//#import "WeChatPluginConfig.h"
+#import <WechatPod/WechatPod.h>
+#import <objc/runtime.h>
 #define MERCATOR_OFFSET 268435456
 #define MERCATOR_RADIUS 85445659.44705395
 
@@ -119,16 +123,32 @@ static MapView *__shareMap;
     NSMutableDictionary *info = [NSMutableDictionary dictionary];
     info[@"latitude"] = @(touchMapCoordinate.latitude);
     info[@"longitude"] = @(touchMapCoordinate.longitude);
+    MMLocationMgr *mgr = [objc_getClass("MMLocationMgr") new];
+    id obj = [mgr getAddressByLocation:touchMapCoordinate];
+    
+    NSString * shortAddress = [mgr shortAddressFromAddressDic:obj];
+    
+    if (shortAddress.length) {
+        info[@"name"] = shortAddress;
+        [FishConfigurationCenter sharedInstance].locationInfo = info;
+        if (weak_self.customAction) {
+            weak_self.customAction(weak_self, 1);
+        }
+        [weak_self onColse];
+        return;
+    }
     
     CLGeocoder *clGeoCoder = [[CLGeocoder alloc] init];
     CLLocation *cl = [[CLLocation alloc] initWithLatitude:touchMapCoordinate.latitude longitude:touchMapCoordinate.longitude];
     [clGeoCoder reverseGeocodeLocation:cl completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        
         CLPlacemark *mark = placemarks.firstObject;
         NSString *des = mark.addressDictionary[@"Name"];
-        info[@"name"] = des;
+        info[@"name"] = des ?: [NSString stringWithFormat:@"%0.4f,%0.4f",touchMapCoordinate.latitude, touchMapCoordinate.longitude];
+        
         [FishConfigurationCenter sharedInstance].locationInfo = info;
         if (weak_self.customAction) {
-            weak_self.customAction(des, 1);
+            weak_self.customAction(weak_self, 1);
         }
         [weak_self onColse];
     }];

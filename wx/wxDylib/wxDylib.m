@@ -23,6 +23,7 @@ static __attribute__((constructor)) void entry(){
     }];
 }
 
+/*
 CHDeclareClass(WCDeviceStepObject)
 // 微信运动步数
 
@@ -49,4 +50,23 @@ CHConstructor{
     CHLoadLateClass(WCDeviceStepObject);
     CHClassHook(0, WCDeviceStepObject, m7StepCount);
 }
+//*/
+/*
+CHDeclareClass(CLLocation);
 
+CHOptimizedMethod0(self, CLLocationCoordinate2D, CLLocation, coordinate){
+    CLLocationCoordinate2D coordinate = CHSuper(0, CLLocation, coordinate);
+    
+    NSDictionary *locationInfo = [FishConfigurationCenter sharedInstance].locationInfo;
+    double latitude = [locationInfo[@"latitude"] doubleValue];
+    double longitude = [locationInfo[@"longitude"] doubleValue];
+    if(longitude || latitude ){
+        coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+    }
+    return coordinate;
+}
+
+CHConstructor{
+    CHLoadLateClass(CLLocation);
+    CHClassHook(0, CLLocation, coordinate);
+}//*/

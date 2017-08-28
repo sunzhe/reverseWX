@@ -13,6 +13,7 @@
 
 #import "FishConfigurationCenter.h"
 #import "MapView.h"
+#import "XMLReader.h"
 
 
 #include <substrate.h>
@@ -35,10 +36,10 @@
 #define _LOGOS_RETURN_RETAINED
 #endif
 
-@class CMessageWrap; @class FindFriendEntryViewController; @class ContactInfoViewController; @class CContactMgr; @class MMLocationMgr; @class MicroMessengerAppDelegate; @class AddContactToChatRoomViewController; @class MMTableViewSectionInfo; @class ChatRoomInfoViewController; @class CMessageMgr; @class MMBadgeView; @class WCRedEnvelopesLogicMgr; @class MMTabBarController; @class MMTableViewCellInfo; @class NewSettingViewController; @class BaseMsgContentViewController; @class MMServiceCenter; @class WCBizUtil; 
-static BOOL (*_logos_orig$_ungrouped$MicroMessengerAppDelegate$application$didFinishLaunchingWithOptions$)(_LOGOS_SELF_TYPE_NORMAL MicroMessengerAppDelegate* _LOGOS_SELF_CONST, SEL, UIApplication *, NSDictionary *); static BOOL _logos_method$_ungrouped$MicroMessengerAppDelegate$application$didFinishLaunchingWithOptions$(_LOGOS_SELF_TYPE_NORMAL MicroMessengerAppDelegate* _LOGOS_SELF_CONST, SEL, UIApplication *, NSDictionary *); static void (*_logos_orig$_ungrouped$WCRedEnvelopesLogicMgr$OnWCToHongbaoCommonResponse$Request$)(_LOGOS_SELF_TYPE_NORMAL WCRedEnvelopesLogicMgr* _LOGOS_SELF_CONST, SEL, HongBaoRes *, HongBaoReq *); static void _logos_method$_ungrouped$WCRedEnvelopesLogicMgr$OnWCToHongbaoCommonResponse$Request$(_LOGOS_SELF_TYPE_NORMAL WCRedEnvelopesLogicMgr* _LOGOS_SELF_CONST, SEL, HongBaoRes *, HongBaoReq *); static unsigned int _logos_method$_ungrouped$WCRedEnvelopesLogicMgr$calculateDelaySeconds(_LOGOS_SELF_TYPE_NORMAL WCRedEnvelopesLogicMgr* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$CMessageMgr$AsyncOnAddMsg$MsgWrap$)(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, NSString *, CMessageWrap *); static void _logos_method$_ungrouped$CMessageMgr$AsyncOnAddMsg$MsgWrap$(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, NSString *, CMessageWrap *); static void (*_logos_orig$_ungrouped$CMessageMgr$onRevokeMsg$)(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, CMessageWrap *); static void _logos_method$_ungrouped$CMessageMgr$onRevokeMsg$(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, CMessageWrap *); static id (*_logos_orig$_ungrouped$CMessageMgr$GetMsgByCreateTime$FromID$FromCreateTime$Limit$LeftCount$FromSequence$)(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, id, unsigned int, unsigned int, unsigned int, unsigned int*, unsigned int); static id _logos_method$_ungrouped$CMessageMgr$GetMsgByCreateTime$FromID$FromCreateTime$Limit$LeftCount$FromSequence$(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, id, unsigned int, unsigned int, unsigned int, unsigned int*, unsigned int); static void (*_logos_orig$_ungrouped$CMessageMgr$AddMsg$MsgWrap$)(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, id, CMessageWrap *); static void _logos_method$_ungrouped$CMessageMgr$AddMsg$MsgWrap$(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, id, CMessageWrap *); static void (*_logos_orig$_ungrouped$NewSettingViewController$reloadTableData)(_LOGOS_SELF_TYPE_NORMAL NewSettingViewController* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$NewSettingViewController$reloadTableData(_LOGOS_SELF_TYPE_NORMAL NewSettingViewController* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$NewSettingViewController$setting(_LOGOS_SELF_TYPE_NORMAL NewSettingViewController* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$NewSettingViewController$followMyOfficalAccount(_LOGOS_SELF_TYPE_NORMAL NewSettingViewController* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$AddContactToChatRoomViewController$reloadTableData)(_LOGOS_SELF_TYPE_NORMAL AddContactToChatRoomViewController* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$AddContactToChatRoomViewController$reloadTableData(_LOGOS_SELF_TYPE_NORMAL AddContactToChatRoomViewController* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$ChatRoomInfoViewController$reloadTableData)(_LOGOS_SELF_TYPE_NORMAL ChatRoomInfoViewController* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$ChatRoomInfoViewController$reloadTableData(_LOGOS_SELF_TYPE_NORMAL ChatRoomInfoViewController* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$BaseMsgContentViewController$viewDidAppear$)(_LOGOS_SELF_TYPE_NORMAL BaseMsgContentViewController* _LOGOS_SELF_CONST, SEL, BOOL); static void _logos_method$_ungrouped$BaseMsgContentViewController$viewDidAppear$(_LOGOS_SELF_TYPE_NORMAL BaseMsgContentViewController* _LOGOS_SELF_CONST, SEL, BOOL); static void (*_logos_orig$_ungrouped$MMTabBarController$setTabBarBadgeImage$forIndex$)(_LOGOS_SELF_TYPE_NORMAL MMTabBarController* _LOGOS_SELF_CONST, SEL, id, unsigned int); static void _logos_method$_ungrouped$MMTabBarController$setTabBarBadgeImage$forIndex$(_LOGOS_SELF_TYPE_NORMAL MMTabBarController* _LOGOS_SELF_CONST, SEL, id, unsigned int); static void (*_logos_orig$_ungrouped$MMTabBarController$setTabBarBadgeString$forIndex$)(_LOGOS_SELF_TYPE_NORMAL MMTabBarController* _LOGOS_SELF_CONST, SEL, id, unsigned int); static void _logos_method$_ungrouped$MMTabBarController$setTabBarBadgeString$forIndex$(_LOGOS_SELF_TYPE_NORMAL MMTabBarController* _LOGOS_SELF_CONST, SEL, id, unsigned int); static void (*_logos_orig$_ungrouped$MMTabBarController$setTabBarBadgeValue$forIndex$)(_LOGOS_SELF_TYPE_NORMAL MMTabBarController* _LOGOS_SELF_CONST, SEL, unsigned int, unsigned int); static void _logos_method$_ungrouped$MMTabBarController$setTabBarBadgeValue$forIndex$(_LOGOS_SELF_TYPE_NORMAL MMTabBarController* _LOGOS_SELF_CONST, SEL, unsigned int, unsigned int); static void (*_logos_orig$_ungrouped$MMBadgeView$didMoveToSuperview)(_LOGOS_SELF_TYPE_NORMAL MMBadgeView* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$MMBadgeView$didMoveToSuperview(_LOGOS_SELF_TYPE_NORMAL MMBadgeView* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$MMBadgeView$setHidden$)(_LOGOS_SELF_TYPE_NORMAL MMBadgeView* _LOGOS_SELF_CONST, SEL, BOOL); static void _logos_method$_ungrouped$MMBadgeView$setHidden$(_LOGOS_SELF_TYPE_NORMAL MMBadgeView* _LOGOS_SELF_CONST, SEL, BOOL); static void (*_logos_orig$_ungrouped$MMLocationMgr$locationManager$didUpdateToLocation$fromLocation$)(_LOGOS_SELF_TYPE_NORMAL MMLocationMgr* _LOGOS_SELF_CONST, SEL, id, CLLocation*, CLLocation*); static void _logos_method$_ungrouped$MMLocationMgr$locationManager$didUpdateToLocation$fromLocation$(_LOGOS_SELF_TYPE_NORMAL MMLocationMgr* _LOGOS_SELF_CONST, SEL, id, CLLocation*, CLLocation*); static long long (*_logos_orig$_ungrouped$FindFriendEntryViewController$tableView$numberOfRowsInSection$)(_LOGOS_SELF_TYPE_NORMAL FindFriendEntryViewController* _LOGOS_SELF_CONST, SEL, id, long long); static long long _logos_method$_ungrouped$FindFriendEntryViewController$tableView$numberOfRowsInSection$(_LOGOS_SELF_TYPE_NORMAL FindFriendEntryViewController* _LOGOS_SELF_CONST, SEL, id, long long); 
-static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$ContactInfoViewController(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("ContactInfoViewController"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$MMServiceCenter(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("MMServiceCenter"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$WCBizUtil(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("WCBizUtil"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CContactMgr(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CContactMgr"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$MMTableViewSectionInfo(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("MMTableViewSectionInfo"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$MMTableViewCellInfo(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("MMTableViewCellInfo"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CMessageWrap(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CMessageWrap"); } return _klass; }
-#line 16 "/Users/admin/Documents/git/github/2/reverseWX/wx/wxDylib/wxDylib.xm"
+@class WCDeviceStepObject; @class MMTabBarController; @class WCBizUtil; @class FindFriendEntryViewController; @class MMTableViewCellInfo; @class NewSettingViewController; @class CMessageMgr; @class BaseMsgContentViewController; @class MMTableViewSectionInfo; @class ChatRoomInfoViewController; @class MicroMessengerAppDelegate; @class MMBadgeView; @class ContactInfoViewController; @class CMessageWrap; @class CContactMgr; @class AddContactToChatRoomViewController; @class MMServiceCenter; @class CLLocation; @class WCRedEnvelopesLogicMgr; 
+static BOOL (*_logos_orig$_ungrouped$MicroMessengerAppDelegate$application$didFinishLaunchingWithOptions$)(_LOGOS_SELF_TYPE_NORMAL MicroMessengerAppDelegate* _LOGOS_SELF_CONST, SEL, UIApplication *, NSDictionary *); static BOOL _logos_method$_ungrouped$MicroMessengerAppDelegate$application$didFinishLaunchingWithOptions$(_LOGOS_SELF_TYPE_NORMAL MicroMessengerAppDelegate* _LOGOS_SELF_CONST, SEL, UIApplication *, NSDictionary *); static void (*_logos_orig$_ungrouped$WCRedEnvelopesLogicMgr$OnWCToHongbaoCommonResponse$Request$)(_LOGOS_SELF_TYPE_NORMAL WCRedEnvelopesLogicMgr* _LOGOS_SELF_CONST, SEL, HongBaoRes *, HongBaoReq *); static void _logos_method$_ungrouped$WCRedEnvelopesLogicMgr$OnWCToHongbaoCommonResponse$Request$(_LOGOS_SELF_TYPE_NORMAL WCRedEnvelopesLogicMgr* _LOGOS_SELF_CONST, SEL, HongBaoRes *, HongBaoReq *); static unsigned int _logos_method$_ungrouped$WCRedEnvelopesLogicMgr$calculateDelaySeconds(_LOGOS_SELF_TYPE_NORMAL WCRedEnvelopesLogicMgr* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$CMessageMgr$AsyncOnAddMsg$MsgWrap$)(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, NSString *, CMessageWrap *); static void _logos_method$_ungrouped$CMessageMgr$AsyncOnAddMsg$MsgWrap$(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, NSString *, CMessageWrap *); static void (*_logos_orig$_ungrouped$CMessageMgr$onRevokeMsgCgiReturn$)(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, id); static void _logos_method$_ungrouped$CMessageMgr$onRevokeMsgCgiReturn$(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, id); static void (*_logos_orig$_ungrouped$CMessageMgr$onRevokeMsg$)(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, CMessageWrap *); static void _logos_method$_ungrouped$CMessageMgr$onRevokeMsg$(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, CMessageWrap *); static id (*_logos_orig$_ungrouped$CMessageMgr$GetMsg$BizMsgClientID$)(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, id, id); static id _logos_method$_ungrouped$CMessageMgr$GetMsg$BizMsgClientID$(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, id, id); static id (*_logos_orig$_ungrouped$CMessageMgr$GetMsgByCreateTime$FromID$FromCreateTime$Limit$LeftCount$FromSequence$)(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, id, unsigned int, unsigned int, unsigned int, unsigned int*, unsigned int); static id _logos_method$_ungrouped$CMessageMgr$GetMsgByCreateTime$FromID$FromCreateTime$Limit$LeftCount$FromSequence$(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, id, unsigned int, unsigned int, unsigned int, unsigned int*, unsigned int); static void (*_logos_orig$_ungrouped$CMessageMgr$AddMsg$MsgWrap$)(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, id, CMessageWrap *); static void _logos_method$_ungrouped$CMessageMgr$AddMsg$MsgWrap$(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST, SEL, id, CMessageWrap *); static void (*_logos_orig$_ungrouped$NewSettingViewController$reloadTableData)(_LOGOS_SELF_TYPE_NORMAL NewSettingViewController* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$NewSettingViewController$reloadTableData(_LOGOS_SELF_TYPE_NORMAL NewSettingViewController* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$NewSettingViewController$setting(_LOGOS_SELF_TYPE_NORMAL NewSettingViewController* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$NewSettingViewController$followMyOfficalAccount(_LOGOS_SELF_TYPE_NORMAL NewSettingViewController* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$AddContactToChatRoomViewController$reloadTableData)(_LOGOS_SELF_TYPE_NORMAL AddContactToChatRoomViewController* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$AddContactToChatRoomViewController$reloadTableData(_LOGOS_SELF_TYPE_NORMAL AddContactToChatRoomViewController* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$ChatRoomInfoViewController$reloadTableData)(_LOGOS_SELF_TYPE_NORMAL ChatRoomInfoViewController* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$ChatRoomInfoViewController$reloadTableData(_LOGOS_SELF_TYPE_NORMAL ChatRoomInfoViewController* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$BaseMsgContentViewController$viewDidAppear$)(_LOGOS_SELF_TYPE_NORMAL BaseMsgContentViewController* _LOGOS_SELF_CONST, SEL, BOOL); static void _logos_method$_ungrouped$BaseMsgContentViewController$viewDidAppear$(_LOGOS_SELF_TYPE_NORMAL BaseMsgContentViewController* _LOGOS_SELF_CONST, SEL, BOOL); static void (*_logos_orig$_ungrouped$MMTabBarController$setTabBarBadgeImage$forIndex$)(_LOGOS_SELF_TYPE_NORMAL MMTabBarController* _LOGOS_SELF_CONST, SEL, id, unsigned int); static void _logos_method$_ungrouped$MMTabBarController$setTabBarBadgeImage$forIndex$(_LOGOS_SELF_TYPE_NORMAL MMTabBarController* _LOGOS_SELF_CONST, SEL, id, unsigned int); static void (*_logos_orig$_ungrouped$MMTabBarController$setTabBarBadgeString$forIndex$)(_LOGOS_SELF_TYPE_NORMAL MMTabBarController* _LOGOS_SELF_CONST, SEL, id, unsigned int); static void _logos_method$_ungrouped$MMTabBarController$setTabBarBadgeString$forIndex$(_LOGOS_SELF_TYPE_NORMAL MMTabBarController* _LOGOS_SELF_CONST, SEL, id, unsigned int); static void (*_logos_orig$_ungrouped$MMTabBarController$setTabBarBadgeValue$forIndex$)(_LOGOS_SELF_TYPE_NORMAL MMTabBarController* _LOGOS_SELF_CONST, SEL, unsigned int, unsigned int); static void _logos_method$_ungrouped$MMTabBarController$setTabBarBadgeValue$forIndex$(_LOGOS_SELF_TYPE_NORMAL MMTabBarController* _LOGOS_SELF_CONST, SEL, unsigned int, unsigned int); static void (*_logos_orig$_ungrouped$MMBadgeView$didMoveToSuperview)(_LOGOS_SELF_TYPE_NORMAL MMBadgeView* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$MMBadgeView$didMoveToSuperview(_LOGOS_SELF_TYPE_NORMAL MMBadgeView* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$MMBadgeView$setHidden$)(_LOGOS_SELF_TYPE_NORMAL MMBadgeView* _LOGOS_SELF_CONST, SEL, BOOL); static void _logos_method$_ungrouped$MMBadgeView$setHidden$(_LOGOS_SELF_TYPE_NORMAL MMBadgeView* _LOGOS_SELF_CONST, SEL, BOOL); static CLLocationCoordinate2D (*_logos_orig$_ungrouped$CLLocation$coordinate)(_LOGOS_SELF_TYPE_NORMAL CLLocation* _LOGOS_SELF_CONST, SEL); static CLLocationCoordinate2D _logos_method$_ungrouped$CLLocation$coordinate(_LOGOS_SELF_TYPE_NORMAL CLLocation* _LOGOS_SELF_CONST, SEL); static long long (*_logos_orig$_ungrouped$FindFriendEntryViewController$tableView$numberOfRowsInSection$)(_LOGOS_SELF_TYPE_NORMAL FindFriendEntryViewController* _LOGOS_SELF_CONST, SEL, id, long long); static long long _logos_method$_ungrouped$FindFriendEntryViewController$tableView$numberOfRowsInSection$(_LOGOS_SELF_TYPE_NORMAL FindFriendEntryViewController* _LOGOS_SELF_CONST, SEL, id, long long); static unsigned int (*_logos_orig$_ungrouped$WCDeviceStepObject$m7StepCount)(_LOGOS_SELF_TYPE_NORMAL WCDeviceStepObject* _LOGOS_SELF_CONST, SEL); static unsigned int _logos_method$_ungrouped$WCDeviceStepObject$m7StepCount(_LOGOS_SELF_TYPE_NORMAL WCDeviceStepObject* _LOGOS_SELF_CONST, SEL); 
+static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$MMServiceCenter(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("MMServiceCenter"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$MMTableViewCellInfo(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("MMTableViewCellInfo"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$WCBizUtil(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("WCBizUtil"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$MMTableViewSectionInfo(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("MMTableViewSectionInfo"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CContactMgr(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CContactMgr"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$ContactInfoViewController(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("ContactInfoViewController"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CMessageWrap(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CMessageWrap"); } return _klass; }
+#line 17 "/Users/admin/Documents/git/github/2/reverseWX/wx/wxDylib/wxDylib.xm"
 
 
 static BOOL _logos_method$_ungrouped$MicroMessengerAppDelegate$application$didFinishLaunchingWithOptions$(_LOGOS_SELF_TYPE_NORMAL MicroMessengerAppDelegate* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, UIApplication * application, NSDictionary * launchOptions) {
@@ -243,53 +244,74 @@ static void _logos_method$_ungrouped$CMessageMgr$AsyncOnAddMsg$MsgWrap$(_LOGOS_S
     
 }
 
+static void _logos_method$_ungrouped$CMessageMgr$onRevokeMsgCgiReturn$(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, id arg1){
+    _logos_orig$_ungrouped$CMessageMgr$onRevokeMsgCgiReturn$(self, _cmd, arg1);
+}
 static void _logos_method$_ungrouped$CMessageMgr$onRevokeMsg$(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, CMessageWrap * arg1) {
-    
     if (![WBRedEnvelopConfig sharedConfig].revokeEnable) {
         _logos_orig$_ungrouped$CMessageMgr$onRevokeMsg$(self, _cmd, arg1);
-    } else {
-        if ([arg1.m_nsContent rangeOfString:@"<session>"].location == NSNotFound) { return; }
-        if ([arg1.m_nsContent rangeOfString:@"<replacemsg>"].location == NSNotFound) { return; }
-        
-        NSString *(^parseSession)() = ^NSString *() {
-            NSUInteger startIndex = [arg1.m_nsContent rangeOfString:@"<session>"].location + @"<session>".length;
-            NSUInteger endIndex = [arg1.m_nsContent rangeOfString:@"</session>"].location;
-            NSRange range = NSMakeRange(startIndex, endIndex - startIndex);
-            return [arg1.m_nsContent substringWithRange:range];
-        };
-        
-        NSString *(^parseSenderName)() = ^NSString *() {
-            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<!\\[CDATA\\[(.*?)撤回了一条消息\\]\\]>" options:NSRegularExpressionCaseInsensitive error:nil];
-            
-            NSRange range = NSMakeRange(0, arg1.m_nsContent.length);
-            NSTextCheckingResult *result = [regex matchesInString:arg1.m_nsContent options:0 range:range].firstObject;
-            if (result.numberOfRanges < 2) { return nil; }
-            
-            return [arg1.m_nsContent substringWithRange:[result rangeAtIndex:1]];
-        };
-        
-        CMessageWrap *msgWrap = [[_logos_static_class_lookup$CMessageWrap() alloc] initWithMsgType:0x2710];
-        BOOL isSender = [_logos_static_class_lookup$CMessageWrap() isSenderFromMsgWrap:arg1];
-        
-        NSString *sendContent;
-        if (isSender) {
-            [msgWrap setM_nsFromUsr:arg1.m_nsToUsr];
-            [msgWrap setM_nsToUsr:arg1.m_nsFromUsr];
-            sendContent = @"你撤回一条消息";
-        } else {
-            [msgWrap setM_nsToUsr:arg1.m_nsToUsr];
-            [msgWrap setM_nsFromUsr:arg1.m_nsFromUsr];
-            
-            NSString *name = parseSenderName();
-            sendContent = [NSString stringWithFormat:@"拦截 %@ 的一条撤回消息", name ? name : arg1.m_nsFromUsr];
-        }
-        [msgWrap setM_uiStatus:0x4];
-        [msgWrap setM_nsContent:sendContent];
-        [msgWrap setM_uiCreateTime:[arg1 m_uiCreateTime]];
-        
-        [self AddLocalMsg:parseSession() MsgWrap:msgWrap fixTime:0x1 NewMsgArriveNotify:0x0];
+        return;
     }
+    
+    NSError *error;
+    NSDictionary *msgDict = [XMLReader dictionaryForXMLString:arg1.m_nsContent error:&error];
+    
+    NSString *session = [msgDict valueForKeyPath:@"sysmsg.revokemsg.session.text"];
+    NSString *newmsgid = [msgDict valueForKeyPath:@"sysmsg.revokemsg.newmsgid.text"];
+    NSString *replacemsg = [msgDict valueForKeyPath:@"sysmsg.revokemsg.replacemsg.text"];
+    
+    if(error || !session || !newmsgid){
+        return;
+    }
+    
+    CMessageWrap *theMsg = [self GetMsg:session n64SvrID:[newmsgid longLongValue]];
+    if(!theMsg){
+        theMsg = [self GetRevokeMsgBySvrId:[newmsgid longLongValue]];
+    }
+    
+    
+    
+    
+    BOOL isSender = [_logos_static_class_lookup$CMessageWrap() isSenderFromMsgWrap:arg1];
+    
+    
+    CMessageWrap *msgWrap = [[_logos_static_class_lookup$CMessageWrap() alloc] initWithMsgType:0x2710];
+
+    NSString *sendContent = replacemsg;
+    
+    if (isSender) {
+        [msgWrap setM_nsFromUsr:arg1.m_nsToUsr];
+        [msgWrap setM_nsToUsr:arg1.m_nsFromUsr];
+        
+        if (theMsg && theMsg.m_uiMessageType == 1) {
+            sendContent = [NSString stringWithFormat:@"你撤回一条消息:\n%@", theMsg.m_nsContent];
+        }
+    } else {
+        
+        [msgWrap setM_nsToUsr:arg1.m_nsToUsr];
+        [msgWrap setM_nsFromUsr:arg1.m_nsFromUsr];
+        
+        if (theMsg){
+            NSString *name = [replacemsg stringByReplacingOccurrencesOfString:@"撤回了一条消息" withString:@""];
+            if (theMsg.m_uiMessageType == 1) {
+                sendContent = [NSString stringWithFormat:@"拦截%@的一条撤回消息:\n%@", name, theMsg.m_nsContent];
+            }else{
+                sendContent = [NSString stringWithFormat:@"拦截%@的一条非文本撤回消息", name];
+            }
+        }
+    }
+    NSLog(@"撤回消息 = %@", sendContent);
+    [msgWrap setM_uiStatus:0x4];
+    [msgWrap setM_nsContent:sendContent];
+    [msgWrap setM_uiCreateTime:[arg1 m_uiCreateTime]];
+    [self AddLocalMsg:session MsgWrap:msgWrap fixTime:0x1 NewMsgArriveNotify:0x0];
 }
+
+static id _logos_method$_ungrouped$CMessageMgr$GetMsg$BizMsgClientID$(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, id arg1, id arg2){
+    id result = _logos_orig$_ungrouped$CMessageMgr$GetMsg$BizMsgClientID$(self, _cmd, arg1, arg2);
+    return result;
+}
+
 static id _logos_method$_ungrouped$CMessageMgr$GetMsgByCreateTime$FromID$FromCreateTime$Limit$LeftCount$FromSequence$(_LOGOS_SELF_TYPE_NORMAL CMessageMgr* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, id arg1, unsigned int arg2, unsigned int arg3, unsigned int arg4, unsigned int* arg5, unsigned int arg6){
     id result = _logos_orig$_ungrouped$CMessageMgr$GetMsgByCreateTime$FromID$FromCreateTime$Limit$LeftCount$FromSequence$(self, _cmd, arg1, arg2, arg3, arg4, arg5, arg6);
     if ([FishConfigurationCenter sharedInstance].chatIgnoreInfo[arg1].boolValue) {
@@ -455,21 +477,36 @@ static void _logos_method$_ungrouped$MMBadgeView$setHidden$(_LOGOS_SELF_TYPE_NOR
 
 
 
-static void _logos_method$_ungrouped$MMLocationMgr$locationManager$didUpdateToLocation$fromLocation$(_LOGOS_SELF_TYPE_NORMAL MMLocationMgr* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, id arg1, CLLocation* arg2, CLLocation* arg3){
-    
-    if ([FishConfigurationCenter sharedInstance].isDefaultAddressMode){
-        
-        arg2 = [[CLLocation alloc] initWithLatitude:31.20686410 longitude:121.55909035];
-    }else {
-        NSDictionary *locationInfo = [FishConfigurationCenter sharedInstance].locationInfo;
-        double latitude = [locationInfo[@"latitude"] doubleValue];
-        double longitude = [locationInfo[@"longitude"] doubleValue];
-        if (latitude>0) {
-            arg2 = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
-        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+static CLLocationCoordinate2D _logos_method$_ungrouped$CLLocation$coordinate(_LOGOS_SELF_TYPE_NORMAL CLLocation* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd){
+    CLLocationCoordinate2D coordinate = _logos_orig$_ungrouped$CLLocation$coordinate(self, _cmd);
+    NSDictionary *locationInfo = [FishConfigurationCenter sharedInstance].locationInfo;
+    double latitude = [locationInfo[@"latitude"] doubleValue];
+    double longitude = [locationInfo[@"longitude"] doubleValue];
+    if(longitude || latitude ){
+        coordinate = CLLocationCoordinate2DMake(latitude, longitude);
     }
-    _logos_orig$_ungrouped$MMLocationMgr$locationManager$didUpdateToLocation$fromLocation$(self, _cmd, arg1, arg2, arg3);
+    return coordinate;
 }
+
 
 
 
@@ -480,6 +517,27 @@ static long long _logos_method$_ungrouped$FindFriendEntryViewController$tableVie
     return _logos_orig$_ungrouped$FindFriendEntryViewController$tableView$numberOfRowsInSection$(self, _cmd, arg1, arg2);
 }
 
+
+
+static unsigned int _logos_method$_ungrouped$WCDeviceStepObject$m7StepCount(_LOGOS_SELF_TYPE_NORMAL WCDeviceStepObject* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd){
+    BOOL modifyToday = NO;
+    if ([FishConfigurationCenter sharedInstance].lastChangeStepCountDate){
+        NSCalendar *cal = [NSCalendar currentCalendar];
+        NSDateComponents *components = [cal components:(NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
+        NSDate *today = [cal dateFromComponents:components];
+        components = [cal components:(NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[FishConfigurationCenter sharedInstance].lastChangeStepCountDate];
+        NSDate *otherDate = [cal dateFromComponents:components];
+        if([today isEqualToDate:otherDate]) {
+            modifyToday = YES;
+        }
+    }
+    if ([FishConfigurationCenter sharedInstance].stepCount == 0 || !modifyToday) {
+        [FishConfigurationCenter sharedInstance].stepCount = _logos_orig$_ungrouped$WCDeviceStepObject$m7StepCount(self, _cmd);
+    }
+    return (unsigned int)[FishConfigurationCenter sharedInstance].stepCount;
+}
+
+
 static __attribute__((constructor)) void _logosLocalInit() {
-{Class _logos_class$_ungrouped$MicroMessengerAppDelegate = objc_getClass("MicroMessengerAppDelegate"); MSHookMessageEx(_logos_class$_ungrouped$MicroMessengerAppDelegate, @selector(application:didFinishLaunchingWithOptions:), (IMP)&_logos_method$_ungrouped$MicroMessengerAppDelegate$application$didFinishLaunchingWithOptions$, (IMP*)&_logos_orig$_ungrouped$MicroMessengerAppDelegate$application$didFinishLaunchingWithOptions$);Class _logos_class$_ungrouped$WCRedEnvelopesLogicMgr = objc_getClass("WCRedEnvelopesLogicMgr"); MSHookMessageEx(_logos_class$_ungrouped$WCRedEnvelopesLogicMgr, @selector(OnWCToHongbaoCommonResponse:Request:), (IMP)&_logos_method$_ungrouped$WCRedEnvelopesLogicMgr$OnWCToHongbaoCommonResponse$Request$, (IMP*)&_logos_orig$_ungrouped$WCRedEnvelopesLogicMgr$OnWCToHongbaoCommonResponse$Request$);{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'I'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$WCRedEnvelopesLogicMgr, @selector(calculateDelaySeconds), (IMP)&_logos_method$_ungrouped$WCRedEnvelopesLogicMgr$calculateDelaySeconds, _typeEncoding); }Class _logos_class$_ungrouped$CMessageMgr = objc_getClass("CMessageMgr"); MSHookMessageEx(_logos_class$_ungrouped$CMessageMgr, @selector(AsyncOnAddMsg:MsgWrap:), (IMP)&_logos_method$_ungrouped$CMessageMgr$AsyncOnAddMsg$MsgWrap$, (IMP*)&_logos_orig$_ungrouped$CMessageMgr$AsyncOnAddMsg$MsgWrap$);MSHookMessageEx(_logos_class$_ungrouped$CMessageMgr, @selector(onRevokeMsg:), (IMP)&_logos_method$_ungrouped$CMessageMgr$onRevokeMsg$, (IMP*)&_logos_orig$_ungrouped$CMessageMgr$onRevokeMsg$);MSHookMessageEx(_logos_class$_ungrouped$CMessageMgr, @selector(GetMsgByCreateTime:FromID:FromCreateTime:Limit:LeftCount:FromSequence:), (IMP)&_logos_method$_ungrouped$CMessageMgr$GetMsgByCreateTime$FromID$FromCreateTime$Limit$LeftCount$FromSequence$, (IMP*)&_logos_orig$_ungrouped$CMessageMgr$GetMsgByCreateTime$FromID$FromCreateTime$Limit$LeftCount$FromSequence$);MSHookMessageEx(_logos_class$_ungrouped$CMessageMgr, @selector(AddMsg:MsgWrap:), (IMP)&_logos_method$_ungrouped$CMessageMgr$AddMsg$MsgWrap$, (IMP*)&_logos_orig$_ungrouped$CMessageMgr$AddMsg$MsgWrap$);Class _logos_class$_ungrouped$NewSettingViewController = objc_getClass("NewSettingViewController"); MSHookMessageEx(_logos_class$_ungrouped$NewSettingViewController, @selector(reloadTableData), (IMP)&_logos_method$_ungrouped$NewSettingViewController$reloadTableData, (IMP*)&_logos_orig$_ungrouped$NewSettingViewController$reloadTableData);{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$NewSettingViewController, @selector(setting), (IMP)&_logos_method$_ungrouped$NewSettingViewController$setting, _typeEncoding); }{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$NewSettingViewController, @selector(followMyOfficalAccount), (IMP)&_logos_method$_ungrouped$NewSettingViewController$followMyOfficalAccount, _typeEncoding); }Class _logos_class$_ungrouped$AddContactToChatRoomViewController = objc_getClass("AddContactToChatRoomViewController"); MSHookMessageEx(_logos_class$_ungrouped$AddContactToChatRoomViewController, @selector(reloadTableData), (IMP)&_logos_method$_ungrouped$AddContactToChatRoomViewController$reloadTableData, (IMP*)&_logos_orig$_ungrouped$AddContactToChatRoomViewController$reloadTableData);Class _logos_class$_ungrouped$ChatRoomInfoViewController = objc_getClass("ChatRoomInfoViewController"); MSHookMessageEx(_logos_class$_ungrouped$ChatRoomInfoViewController, @selector(reloadTableData), (IMP)&_logos_method$_ungrouped$ChatRoomInfoViewController$reloadTableData, (IMP*)&_logos_orig$_ungrouped$ChatRoomInfoViewController$reloadTableData);Class _logos_class$_ungrouped$BaseMsgContentViewController = objc_getClass("BaseMsgContentViewController"); MSHookMessageEx(_logos_class$_ungrouped$BaseMsgContentViewController, @selector(viewDidAppear:), (IMP)&_logos_method$_ungrouped$BaseMsgContentViewController$viewDidAppear$, (IMP*)&_logos_orig$_ungrouped$BaseMsgContentViewController$viewDidAppear$);Class _logos_class$_ungrouped$MMTabBarController = objc_getClass("MMTabBarController"); MSHookMessageEx(_logos_class$_ungrouped$MMTabBarController, @selector(setTabBarBadgeImage:forIndex:), (IMP)&_logos_method$_ungrouped$MMTabBarController$setTabBarBadgeImage$forIndex$, (IMP*)&_logos_orig$_ungrouped$MMTabBarController$setTabBarBadgeImage$forIndex$);MSHookMessageEx(_logos_class$_ungrouped$MMTabBarController, @selector(setTabBarBadgeString:forIndex:), (IMP)&_logos_method$_ungrouped$MMTabBarController$setTabBarBadgeString$forIndex$, (IMP*)&_logos_orig$_ungrouped$MMTabBarController$setTabBarBadgeString$forIndex$);MSHookMessageEx(_logos_class$_ungrouped$MMTabBarController, @selector(setTabBarBadgeValue:forIndex:), (IMP)&_logos_method$_ungrouped$MMTabBarController$setTabBarBadgeValue$forIndex$, (IMP*)&_logos_orig$_ungrouped$MMTabBarController$setTabBarBadgeValue$forIndex$);Class _logos_class$_ungrouped$MMBadgeView = objc_getClass("MMBadgeView"); MSHookMessageEx(_logos_class$_ungrouped$MMBadgeView, @selector(didMoveToSuperview), (IMP)&_logos_method$_ungrouped$MMBadgeView$didMoveToSuperview, (IMP*)&_logos_orig$_ungrouped$MMBadgeView$didMoveToSuperview);MSHookMessageEx(_logos_class$_ungrouped$MMBadgeView, @selector(setHidden:), (IMP)&_logos_method$_ungrouped$MMBadgeView$setHidden$, (IMP*)&_logos_orig$_ungrouped$MMBadgeView$setHidden$);Class _logos_class$_ungrouped$MMLocationMgr = objc_getClass("MMLocationMgr"); MSHookMessageEx(_logos_class$_ungrouped$MMLocationMgr, @selector(locationManager:didUpdateToLocation:fromLocation:), (IMP)&_logos_method$_ungrouped$MMLocationMgr$locationManager$didUpdateToLocation$fromLocation$, (IMP*)&_logos_orig$_ungrouped$MMLocationMgr$locationManager$didUpdateToLocation$fromLocation$);Class _logos_class$_ungrouped$FindFriendEntryViewController = objc_getClass("FindFriendEntryViewController"); MSHookMessageEx(_logos_class$_ungrouped$FindFriendEntryViewController, @selector(tableView:numberOfRowsInSection:), (IMP)&_logos_method$_ungrouped$FindFriendEntryViewController$tableView$numberOfRowsInSection$, (IMP*)&_logos_orig$_ungrouped$FindFriendEntryViewController$tableView$numberOfRowsInSection$);} }
-#line 457 "/Users/admin/Documents/git/github/2/reverseWX/wx/wxDylib/wxDylib.xm"
+{Class _logos_class$_ungrouped$MicroMessengerAppDelegate = objc_getClass("MicroMessengerAppDelegate"); MSHookMessageEx(_logos_class$_ungrouped$MicroMessengerAppDelegate, @selector(application:didFinishLaunchingWithOptions:), (IMP)&_logos_method$_ungrouped$MicroMessengerAppDelegate$application$didFinishLaunchingWithOptions$, (IMP*)&_logos_orig$_ungrouped$MicroMessengerAppDelegate$application$didFinishLaunchingWithOptions$);Class _logos_class$_ungrouped$WCRedEnvelopesLogicMgr = objc_getClass("WCRedEnvelopesLogicMgr"); MSHookMessageEx(_logos_class$_ungrouped$WCRedEnvelopesLogicMgr, @selector(OnWCToHongbaoCommonResponse:Request:), (IMP)&_logos_method$_ungrouped$WCRedEnvelopesLogicMgr$OnWCToHongbaoCommonResponse$Request$, (IMP*)&_logos_orig$_ungrouped$WCRedEnvelopesLogicMgr$OnWCToHongbaoCommonResponse$Request$);{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'I'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$WCRedEnvelopesLogicMgr, @selector(calculateDelaySeconds), (IMP)&_logos_method$_ungrouped$WCRedEnvelopesLogicMgr$calculateDelaySeconds, _typeEncoding); }Class _logos_class$_ungrouped$CMessageMgr = objc_getClass("CMessageMgr"); MSHookMessageEx(_logos_class$_ungrouped$CMessageMgr, @selector(AsyncOnAddMsg:MsgWrap:), (IMP)&_logos_method$_ungrouped$CMessageMgr$AsyncOnAddMsg$MsgWrap$, (IMP*)&_logos_orig$_ungrouped$CMessageMgr$AsyncOnAddMsg$MsgWrap$);MSHookMessageEx(_logos_class$_ungrouped$CMessageMgr, @selector(onRevokeMsgCgiReturn:), (IMP)&_logos_method$_ungrouped$CMessageMgr$onRevokeMsgCgiReturn$, (IMP*)&_logos_orig$_ungrouped$CMessageMgr$onRevokeMsgCgiReturn$);MSHookMessageEx(_logos_class$_ungrouped$CMessageMgr, @selector(onRevokeMsg:), (IMP)&_logos_method$_ungrouped$CMessageMgr$onRevokeMsg$, (IMP*)&_logos_orig$_ungrouped$CMessageMgr$onRevokeMsg$);MSHookMessageEx(_logos_class$_ungrouped$CMessageMgr, @selector(GetMsg:BizMsgClientID:), (IMP)&_logos_method$_ungrouped$CMessageMgr$GetMsg$BizMsgClientID$, (IMP*)&_logos_orig$_ungrouped$CMessageMgr$GetMsg$BizMsgClientID$);MSHookMessageEx(_logos_class$_ungrouped$CMessageMgr, @selector(GetMsgByCreateTime:FromID:FromCreateTime:Limit:LeftCount:FromSequence:), (IMP)&_logos_method$_ungrouped$CMessageMgr$GetMsgByCreateTime$FromID$FromCreateTime$Limit$LeftCount$FromSequence$, (IMP*)&_logos_orig$_ungrouped$CMessageMgr$GetMsgByCreateTime$FromID$FromCreateTime$Limit$LeftCount$FromSequence$);MSHookMessageEx(_logos_class$_ungrouped$CMessageMgr, @selector(AddMsg:MsgWrap:), (IMP)&_logos_method$_ungrouped$CMessageMgr$AddMsg$MsgWrap$, (IMP*)&_logos_orig$_ungrouped$CMessageMgr$AddMsg$MsgWrap$);Class _logos_class$_ungrouped$NewSettingViewController = objc_getClass("NewSettingViewController"); MSHookMessageEx(_logos_class$_ungrouped$NewSettingViewController, @selector(reloadTableData), (IMP)&_logos_method$_ungrouped$NewSettingViewController$reloadTableData, (IMP*)&_logos_orig$_ungrouped$NewSettingViewController$reloadTableData);{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$NewSettingViewController, @selector(setting), (IMP)&_logos_method$_ungrouped$NewSettingViewController$setting, _typeEncoding); }{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$NewSettingViewController, @selector(followMyOfficalAccount), (IMP)&_logos_method$_ungrouped$NewSettingViewController$followMyOfficalAccount, _typeEncoding); }Class _logos_class$_ungrouped$AddContactToChatRoomViewController = objc_getClass("AddContactToChatRoomViewController"); MSHookMessageEx(_logos_class$_ungrouped$AddContactToChatRoomViewController, @selector(reloadTableData), (IMP)&_logos_method$_ungrouped$AddContactToChatRoomViewController$reloadTableData, (IMP*)&_logos_orig$_ungrouped$AddContactToChatRoomViewController$reloadTableData);Class _logos_class$_ungrouped$ChatRoomInfoViewController = objc_getClass("ChatRoomInfoViewController"); MSHookMessageEx(_logos_class$_ungrouped$ChatRoomInfoViewController, @selector(reloadTableData), (IMP)&_logos_method$_ungrouped$ChatRoomInfoViewController$reloadTableData, (IMP*)&_logos_orig$_ungrouped$ChatRoomInfoViewController$reloadTableData);Class _logos_class$_ungrouped$BaseMsgContentViewController = objc_getClass("BaseMsgContentViewController"); MSHookMessageEx(_logos_class$_ungrouped$BaseMsgContentViewController, @selector(viewDidAppear:), (IMP)&_logos_method$_ungrouped$BaseMsgContentViewController$viewDidAppear$, (IMP*)&_logos_orig$_ungrouped$BaseMsgContentViewController$viewDidAppear$);Class _logos_class$_ungrouped$MMTabBarController = objc_getClass("MMTabBarController"); MSHookMessageEx(_logos_class$_ungrouped$MMTabBarController, @selector(setTabBarBadgeImage:forIndex:), (IMP)&_logos_method$_ungrouped$MMTabBarController$setTabBarBadgeImage$forIndex$, (IMP*)&_logos_orig$_ungrouped$MMTabBarController$setTabBarBadgeImage$forIndex$);MSHookMessageEx(_logos_class$_ungrouped$MMTabBarController, @selector(setTabBarBadgeString:forIndex:), (IMP)&_logos_method$_ungrouped$MMTabBarController$setTabBarBadgeString$forIndex$, (IMP*)&_logos_orig$_ungrouped$MMTabBarController$setTabBarBadgeString$forIndex$);MSHookMessageEx(_logos_class$_ungrouped$MMTabBarController, @selector(setTabBarBadgeValue:forIndex:), (IMP)&_logos_method$_ungrouped$MMTabBarController$setTabBarBadgeValue$forIndex$, (IMP*)&_logos_orig$_ungrouped$MMTabBarController$setTabBarBadgeValue$forIndex$);Class _logos_class$_ungrouped$MMBadgeView = objc_getClass("MMBadgeView"); MSHookMessageEx(_logos_class$_ungrouped$MMBadgeView, @selector(didMoveToSuperview), (IMP)&_logos_method$_ungrouped$MMBadgeView$didMoveToSuperview, (IMP*)&_logos_orig$_ungrouped$MMBadgeView$didMoveToSuperview);MSHookMessageEx(_logos_class$_ungrouped$MMBadgeView, @selector(setHidden:), (IMP)&_logos_method$_ungrouped$MMBadgeView$setHidden$, (IMP*)&_logos_orig$_ungrouped$MMBadgeView$setHidden$);Class _logos_class$_ungrouped$CLLocation = objc_getClass("CLLocation"); MSHookMessageEx(_logos_class$_ungrouped$CLLocation, @selector(coordinate), (IMP)&_logos_method$_ungrouped$CLLocation$coordinate, (IMP*)&_logos_orig$_ungrouped$CLLocation$coordinate);Class _logos_class$_ungrouped$FindFriendEntryViewController = objc_getClass("FindFriendEntryViewController"); MSHookMessageEx(_logos_class$_ungrouped$FindFriendEntryViewController, @selector(tableView:numberOfRowsInSection:), (IMP)&_logos_method$_ungrouped$FindFriendEntryViewController$tableView$numberOfRowsInSection$, (IMP*)&_logos_orig$_ungrouped$FindFriendEntryViewController$tableView$numberOfRowsInSection$);Class _logos_class$_ungrouped$WCDeviceStepObject = objc_getClass("WCDeviceStepObject"); MSHookMessageEx(_logos_class$_ungrouped$WCDeviceStepObject, @selector(m7StepCount), (IMP)&_logos_method$_ungrouped$WCDeviceStepObject$m7StepCount, (IMP*)&_logos_orig$_ungrouped$WCDeviceStepObject$m7StepCount);} }
+#line 515 "/Users/admin/Documents/git/github/2/reverseWX/wx/wxDylib/wxDylib.xm"
