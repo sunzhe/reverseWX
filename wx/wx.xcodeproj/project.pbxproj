@@ -42,6 +42,19 @@
 		84575DF61F42D322007663F8 /* FishConfigurationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 84575DF41F42D322007663F8 /* FishConfigurationCenter.m */; };
 		8469DEAE1F54087500350591 /* XMLReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 8469DEAC1F54087500350591 /* XMLReader.h */; };
 		8469DEAF1F54087500350591 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469DEAD1F54087500350591 /* XMLReader.m */; };
+		84B8F8441F556DBE0090BB2C /* TKChatRoomSensitiveViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F8361F556DBE0090BB2C /* TKChatRoomSensitiveViewController.h */; };
+		84B8F8451F556DBE0090BB2C /* TKChatRoomSensitiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F8371F556DBE0090BB2C /* TKChatRoomSensitiveViewController.m */; };
+		84B8F8461F556DBE0090BB2C /* TKEditViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F8381F556DBE0090BB2C /* TKEditViewController.h */; };
+		84B8F8471F556DBE0090BB2C /* TKEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F8391F556DBE0090BB2C /* TKEditViewController.m */; };
+		84B8F8481F556DBE0090BB2C /* TKMultiSelectContactsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F83A1F556DBE0090BB2C /* TKMultiSelectContactsViewController.h */; };
+		84B8F8491F556DBE0090BB2C /* TKMultiSelectContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F83B1F556DBE0090BB2C /* TKMultiSelectContactsViewController.m */; };
+		84B8F84A1F556DBE0090BB2C /* TKRobotConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F83C1F556DBE0090BB2C /* TKRobotConfig.h */; };
+		84B8F84B1F556DBE0090BB2C /* TKRobotConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F83D1F556DBE0090BB2C /* TKRobotConfig.m */; };
+		84B8F84C1F556DBE0090BB2C /* TKSettingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F83E1F556DBE0090BB2C /* TKSettingViewController.h */; };
+		84B8F84D1F556DBE0090BB2C /* TKSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F83F1F556DBE0090BB2C /* TKSettingViewController.m */; };
+		84B8F84E1F556DBE0090BB2C /* TKToast.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F8401F556DBE0090BB2C /* TKToast.h */; };
+		84B8F84F1F556DBE0090BB2C /* TKToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F8411F556DBE0090BB2C /* TKToast.m */; };
+		84B8F8501F556DBE0090BB2C /* WeChatRobot.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F8431F556DBE0090BB2C /* WeChatRobot.h */; };
 		84D3C8071F430F0C00703315 /* MapView.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D3C8051F430F0C00703315 /* MapView.h */; };
 		84D3C8081F430F0C00703315 /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D3C8061F430F0C00703315 /* MapView.m */; };
 		BCE861EBB829F7D5B6957C3C /* Pods_wxDylib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC907300128F226110DB6D4 /* Pods_wxDylib.framework */; };
@@ -102,6 +115,19 @@
 		84575DF41F42D322007663F8 /* FishConfigurationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishConfigurationCenter.m; sourceTree = "<group>"; };
 		8469DEAC1F54087500350591 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		8469DEAD1F54087500350591 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
+		84B8F8361F556DBE0090BB2C /* TKChatRoomSensitiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKChatRoomSensitiveViewController.h; sourceTree = "<group>"; };
+		84B8F8371F556DBE0090BB2C /* TKChatRoomSensitiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKChatRoomSensitiveViewController.m; sourceTree = "<group>"; };
+		84B8F8381F556DBE0090BB2C /* TKEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKEditViewController.h; sourceTree = "<group>"; };
+		84B8F8391F556DBE0090BB2C /* TKEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKEditViewController.m; sourceTree = "<group>"; };
+		84B8F83A1F556DBE0090BB2C /* TKMultiSelectContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKMultiSelectContactsViewController.h; sourceTree = "<group>"; };
+		84B8F83B1F556DBE0090BB2C /* TKMultiSelectContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKMultiSelectContactsViewController.m; sourceTree = "<group>"; };
+		84B8F83C1F556DBE0090BB2C /* TKRobotConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKRobotConfig.h; sourceTree = "<group>"; };
+		84B8F83D1F556DBE0090BB2C /* TKRobotConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKRobotConfig.m; sourceTree = "<group>"; };
+		84B8F83E1F556DBE0090BB2C /* TKSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKSettingViewController.h; sourceTree = "<group>"; };
+		84B8F83F1F556DBE0090BB2C /* TKSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKSettingViewController.m; sourceTree = "<group>"; };
+		84B8F8401F556DBE0090BB2C /* TKToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKToast.h; sourceTree = "<group>"; };
+		84B8F8411F556DBE0090BB2C /* TKToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKToast.m; sourceTree = "<group>"; };
+		84B8F8431F556DBE0090BB2C /* WeChatRobot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatRobot.h; sourceTree = "<group>"; };
 		84D3C8051F430F0C00703315 /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
 		84D3C8061F430F0C00703315 /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
 		8D57875F093C68E55CBFB2F9 /* Pods-wxDylib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wxDylib.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wxDylib/Pods-wxDylib.debug.xcconfig"; sourceTree = "<group>"; };
@@ -209,6 +235,7 @@
 				84D3C8061F430F0C00703315 /* MapView.m */,
 				8469DEAC1F54087500350591 /* XMLReader.h */,
 				8469DEAD1F54087500350591 /* XMLReader.m */,
+				84B8F8351F556DBE0090BB2C /* chat */,
 				84575DC41F42D091007663F8 /* RedEnvelop */,
 				84575DA71F42CE86007663F8 /* CaptainHook */,
 				84575DAA1F42CE86007663F8 /* AntiAntiDebug */,
@@ -275,6 +302,26 @@
 			path = RedEnvelop;
 			sourceTree = "<group>";
 		};
+		84B8F8351F556DBE0090BB2C /* chat */ = {
+			isa = PBXGroup;
+			children = (
+				84B8F8361F556DBE0090BB2C /* TKChatRoomSensitiveViewController.h */,
+				84B8F8371F556DBE0090BB2C /* TKChatRoomSensitiveViewController.m */,
+				84B8F8381F556DBE0090BB2C /* TKEditViewController.h */,
+				84B8F8391F556DBE0090BB2C /* TKEditViewController.m */,
+				84B8F83A1F556DBE0090BB2C /* TKMultiSelectContactsViewController.h */,
+				84B8F83B1F556DBE0090BB2C /* TKMultiSelectContactsViewController.m */,
+				84B8F83C1F556DBE0090BB2C /* TKRobotConfig.h */,
+				84B8F83D1F556DBE0090BB2C /* TKRobotConfig.m */,
+				84B8F83E1F556DBE0090BB2C /* TKSettingViewController.h */,
+				84B8F83F1F556DBE0090BB2C /* TKSettingViewController.m */,
+				84B8F8401F556DBE0090BB2C /* TKToast.h */,
+				84B8F8411F556DBE0090BB2C /* TKToast.m */,
+				84B8F8431F556DBE0090BB2C /* WeChatRobot.h */,
+			);
+			path = chat;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -283,19 +330,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				84575DA91F42CE86007663F8 /* CaptainHook.h in Headers */,
+				84B8F8481F556DBE0090BB2C /* TKMultiSelectContactsViewController.h in Headers */,
 				84575DEE1F42D11A007663F8 /* WBSettingViewController.h in Headers */,
 				84575DEC1F42D11A007663F8 /* WBRedEnvelopParamQueue.h in Headers */,
 				84575DB61F42CE86007663F8 /* wxDylib.h in Headers */,
+				84B8F8501F556DBE0090BB2C /* WeChatRobot.h in Headers */,
 				84575DEF1F42D11A007663F8 /* WeChatRedEnvelop.h in Headers */,
 				84575DE91F42D116007663F8 /* WBMultiSelectGroupsViewController.h in Headers */,
+				84B8F84C1F556DBE0090BB2C /* TKSettingViewController.h in Headers */,
 				84575DEA1F42D11A007663F8 /* WBReceiveRedEnvelopOperation.h in Headers */,
 				8469DEAE1F54087500350591 /* XMLReader.h in Headers */,
 				84575DB11F42CE86007663F8 /* fishhook.h in Headers */,
 				84D3C8071F430F0C00703315 /* MapView.h in Headers */,
+				84B8F84A1F556DBE0090BB2C /* TKRobotConfig.h in Headers */,
+				84B8F84E1F556DBE0090BB2C /* TKToast.h in Headers */,
 				84575DEB1F42D11A007663F8 /* WBRedEnvelopConfig.h in Headers */,
 				84575DF51F42D322007663F8 /* FishConfigurationCenter.h in Headers */,
 				84575DE81F42D114007663F8 /* WBBaseViewController.h in Headers */,
+				84B8F8461F556DBE0090BB2C /* TKEditViewController.h in Headers */,
 				84575DF01F42D11A007663F8 /* WeChatRedEnvelopParam.h in Headers */,
+				84B8F8441F556DBE0090BB2C /* TKChatRoomSensitiveViewController.h in Headers */,
 				84575DED1F42D11A007663F8 /* WBRedEnvelopTaskManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,20 +565,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84B8F84B1F556DBE0090BB2C /* TKRobotConfig.m in Sources */,
 				84575DE61F42D109007663F8 /* WBSettingViewController.m in Sources */,
 				84575DAF1F42CE86007663F8 /* fishhook.c in Sources */,
 				84575DE11F42D0FD007663F8 /* WBMultiSelectGroupsViewController.m in Sources */,
 				84575DE31F42D102007663F8 /* WBRedEnvelopConfig.m in Sources */,
+				84B8F8491F556DBE0090BB2C /* TKMultiSelectContactsViewController.m in Sources */,
 				84575DAC1F42CE86007663F8 /* AntiAntiDebug.m in Sources */,
 				84575DB41F42CE86007663F8 /* wxDylib.mm in Sources */,
 				84575DE51F42D107007663F8 /* WBRedEnvelopTaskManager.m in Sources */,
 				8469DEAF1F54087500350591 /* XMLReader.m in Sources */,
 				84575DE71F42D10C007663F8 /* WeChatRedEnvelopParam.m in Sources */,
 				84575DE21F42D100007663F8 /* WBReceiveRedEnvelopOperation.m in Sources */,
+				84B8F84D1F556DBE0090BB2C /* TKSettingViewController.m in Sources */,
 				84575DB81F42CE86007663F8 /* wxDylib.m in Sources */,
+				84B8F8451F556DBE0090BB2C /* TKChatRoomSensitiveViewController.m in Sources */,
 				84575DE41F42D104007663F8 /* WBRedEnvelopParamQueue.m in Sources */,
+				84B8F84F1F556DBE0090BB2C /* TKToast.m in Sources */,
 				84D3C8081F430F0C00703315 /* MapView.m in Sources */,
 				84575DF61F42D322007663F8 /* FishConfigurationCenter.m in Sources */,
+				84B8F8471F556DBE0090BB2C /* TKEditViewController.m in Sources */,
 				84575DE01F42D0FA007663F8 /* WBBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

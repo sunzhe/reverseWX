@@ -50,6 +50,7 @@ BOOL __ignoreSaveValue;
 + (void)loadInstance:(FishConfigurationCenter *)instance
 {
     FishConfigurationCenter *center = [self sharedInstance];
+    center.tabRedMode = instance.tabRedMode;
     center.redMode = instance.redMode;
     center.friendMode = instance.friendMode;
     center.nightMode = instance.isNightMode;
@@ -65,6 +66,11 @@ BOOL __ignoreSaveValue;
 
 - (void)handleRedMode:(UISwitch *)sender{
     self.redMode = sender.isOn;
+    [self saveValue];
+}
+
+- (void)handleTabRedMode:(UISwitch *)sender{
+    self.tabRedMode = sender.isOn;
     [self saveValue];
 }
 
@@ -119,6 +125,7 @@ BOOL __ignoreSaveValue;
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
+    [aCoder encodeBool:self.tabRedMode forKey:@"tabRedMode"];
     [aCoder encodeBool:self.redMode forKey:@"redMode"];
     [aCoder encodeBool:self.friendMode forKey:@"friendMode"];
     [aCoder encodeBool:self.nightMode forKey:@"nightMode"];
@@ -134,6 +141,7 @@ BOOL __ignoreSaveValue;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super init]) {
+        self.tabRedMode = [aDecoder decodeBoolForKey:@"tabRedMode"];
         self.redMode = [aDecoder decodeBoolForKey:@"redMode"];
         self.friendMode = [aDecoder decodeBoolForKey:@"friendMode"];
         self.nightMode = [aDecoder decodeBoolForKey:@"nightMode"];

@@ -13,7 +13,7 @@
 #import "WBMultiSelectGroupsViewController.h"
 #import "FishConfigurationCenter.h"
 #import "MapView.h"
-
+#import "TKSettingViewController.h"
 @interface WBSettingViewController () <MultiSelectGroupsViewControllerDelegate>
 
 @property (nonatomic, strong) MMTableViewInfo *tableViewInfo;
@@ -137,12 +137,12 @@
 
 #pragma mark - ProSetting
 - (void)addAdvanceSettingSection {
-    MMTableViewSectionInfo *sectionInfo = [objc_getClass("MMTableViewSectionInfo") sectionInfoHeader:@"高级功能"];
+    MMTableViewSectionInfo *sectionInfo = [objc_getClass("MMTableViewSectionInfo") sectionInfoHeader:@"装逼必备"];
     [sectionInfo addCell:[self changeStepCountCell]];
     [sectionInfo addCell:[self createAbortRemokeMessageCell]];
     //[sectionInfo addCell:[self createKeywordFilterCell]];
-    [sectionInfo addCell:[self hidedRedPintCell]];
-    [sectionInfo addCell:[self hidedFriendCell]];
+    [sectionInfo addCell:[self hideRedPintCell]];
+    [sectionInfo addCell:[self hideTabRedPintCell]];
     [sectionInfo addCell:[self changeLocalCell]];
     [self.tableViewInfo addSection:sectionInfo];
 }
@@ -157,8 +157,12 @@
     return [(id)objc_getClass("MMTableViewCellInfo") switchCellForSel:@selector(handleFriendMode:) target:[FishConfigurationCenter sharedInstance] title:@"关闭朋友圈入口" on:[FishConfigurationCenter sharedInstance].isFriendMode];
 }
 
-- (MMTableViewCellInfo *)hidedRedPintCell {
-    return [(id)objc_getClass("MMTableViewCellInfo") switchCellForSel:@selector(handleRedMode:) target:[FishConfigurationCenter sharedInstance] title:@"关闭小红点" on:[FishConfigurationCenter sharedInstance].isRedMode];
+- (MMTableViewCellInfo *)hideRedPintCell {
+    return [(id)objc_getClass("MMTableViewCellInfo") switchCellForSel:@selector(handleRedMode:) target:[FishConfigurationCenter sharedInstance] title:@"关闭聊天小红点" on:[FishConfigurationCenter sharedInstance].isRedMode];
+}
+
+- (MMTableViewCellInfo *)hideTabRedPintCell {
+    return [(id)objc_getClass("MMTableViewCellInfo") switchCellForSel:@selector(handleTabRedMode:) target:[FishConfigurationCenter sharedInstance] title:@"关闭tab小红点" on:[FishConfigurationCenter sharedInstance].isTabRedMode];
 }
 
 - (MMTableViewCellInfo *)changeStepCountCell{
@@ -281,15 +285,22 @@
 - (void)addSupportSection {
     MMTableViewSectionInfo *sectionInfo = [objc_getClass("MMTableViewSectionInfo") sectionInfoDefaut];
     
+    [sectionInfo addCell:[self createMoreSettingCell]];
     [sectionInfo addCell:[self createWeChatPayingCell]];
     
     [self.tableViewInfo addSection:sectionInfo];
 }
 
+- (MMTableViewCellInfo *)createMoreSettingCell {
+    return [objc_getClass("MMTableViewCellInfo") normalCellForSel:@selector(moreSetting) target:self title:@"更多功能" accessoryType:1];
+}
 - (MMTableViewCellInfo *)createWeChatPayingCell {
     return [objc_getClass("MMTableViewCellInfo") normalCellForSel:@selector(payingToAuthor) target:self title:@"支持作者" rightValue:@"打赏开发" accessoryType:1];
 }
-
+- (void)moreSetting{
+    TKSettingViewController *more = [[TKSettingViewController alloc] init];
+    [self.navigationController PushViewController:more animated:YES];
+}
 - (void)payingToAuthor {
     [self startLoadingNonBlock];
     ScanQRCodeLogicController *scanQRCodeLogic = [[objc_getClass("ScanQRCodeLogicController") alloc] initWithViewController:self CodeType:3];
@@ -320,5 +331,9 @@
         }
         [weak_self reloadTableData];
     };
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
 }
 @end

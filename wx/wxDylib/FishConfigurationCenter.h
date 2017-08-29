@@ -13,6 +13,8 @@
 
 @property (nonatomic, getter = isRedMode) BOOL redMode;
 
+@property (nonatomic, getter = isTabRedMode) BOOL tabRedMode;
+
 @property (nonatomic, getter = isNightMode) BOOL nightMode;
 
 @property (nonatomic, getter = isFriendMode) BOOL friendMode;
@@ -39,4 +41,6 @@
 - (void)handleFriendMode:(UISwitch *)sender;
 
 - (void)handleRedMode:(UISwitch *)sender;
+
+- (void)handleTabRedMode:(UISwitch *)sender;
 @end

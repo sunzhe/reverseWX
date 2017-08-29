@@ -1,5 +1,9 @@
 #pragma mark - Util
 #import <UIKit/UIKit.h>
+#import "WeChatRobot.h"
+
+NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList);
+
 @interface WCBizUtil : NSObject
 
 + (id)dictionaryWithDecodedComponets:(id)arg1 separator:(id)arg2;
@@ -13,60 +17,6 @@
 @end
 
 #pragma mark - Message
-
-@interface WCPayInfoItem: NSObject
-
-@property(retain, nonatomic) NSString *m_c2cNativeUrl;
-
-@end
-
-@interface CMessageMgr : NSObject
-
-- (void)AddLocalMsg:(id)arg1 MsgWrap:(id)arg2 fixTime:(_Bool)arg3 NewMsgArriveNotify:(_Bool)arg4;
-
-- (id)GetMsg:(id)arg1 n64SvrID:(long long)arg2;
-- (id)GetRevokeMsgBySvrId:(long long)arg1;
-@end
-
-@interface CMessageWrap : NSObject
-
-@property (retain, nonatomic) WCPayInfoItem *m_oWCPayInfoItem;
-@property (assign, nonatomic) NSUInteger m_uiMesLocalID;
-@property (retain, nonatomic) NSString* m_nsFromUsr;            ///< 发信人，可能是群或个人
-@property (retain, nonatomic) NSString* m_nsToUsr;              ///< 收信人
-@property (assign, nonatomic) NSUInteger m_uiStatus;
-@property (retain, nonatomic) NSString* m_nsContent;            ///< 消息内容
-@property (retain, nonatomic) NSString* m_nsRealChatUsr;        ///< 群消息的发信人，具体是群里的哪个人
-@property (assign, nonatomic) NSUInteger m_uiMessageType;
-@property (assign, nonatomic) long long m_n64MesSvrID;
-@property (assign, nonatomic) NSUInteger m_uiCreateTime;
-@property (retain, nonatomic) NSString *m_nsDesc;
-@property (retain, nonatomic) NSString *m_nsAppExtInfo;
-@property (assign, nonatomic) NSUInteger m_uiAppDataSize;
-@property (assign, nonatomic) NSUInteger m_uiAppMsgInnerType;
-@property (retain, nonatomic) NSString *m_nsShareOpenUrl;
-@property (retain, nonatomic) NSString *m_nsShareOriginUrl;
-@property (retain, nonatomic) NSString *m_nsJsAppId;
-@property (retain, nonatomic) NSString *m_nsPrePublishId;
-@property (retain, nonatomic) NSString *m_nsAppID;
-@property (retain, nonatomic) NSString *m_nsAppName;
-@property (retain, nonatomic) NSString *m_nsThumbUrl;
-@property (retain, nonatomic) NSString *m_nsAppMediaUrl;
-@property (retain, nonatomic) NSData *m_dtThumbnail;
-@property (retain, nonatomic) NSString *m_nsTitle;
-@property (retain, nonatomic) NSString *m_nsMsgSource;
-
-- (id)initWithMsgType:(long long)arg1;
-+ (_Bool)isSenderFromMsgWrap:(id)arg1;
-
-@end
-
-@interface MMServiceCenter : NSObject
-
-+ (instancetype)defaultCenter;
-- (id)getService:(Class)service;
-
-@end
 
 @interface MMLanguageMgr: NSObject
 
@@ -107,29 +57,6 @@
 
 @end
 
-#pragma mark - Contact
-
-@interface CContact: NSObject <NSCoding>
-
-@property(retain, nonatomic) NSString *m_nsUsrName;
-@property(retain, nonatomic) NSString *m_nsHeadImgUrl;
-@property(retain, nonatomic) NSString *m_nsNickName;
-
-- (id)getContactDisplayName;
-
-@end
-
-@interface CContactMgr : NSObject
-
-- (id)getSelfContact;
-- (id)getContactByName:(id)arg1;
-- (id)getContactForSearchByName:(id)arg1;
-- (_Bool)getContactsFromServer:(id)arg1;
-- (_Bool)isInContactList:(id)arg1;
-- (_Bool)addLocalContact:(id)arg1 listType:(unsigned int)arg2;
-
-@end
-
 
 #pragma mark - QRCode
 
@@ -152,61 +79,9 @@
 
 #pragma mark - MMTableView
 
-@interface MMTableViewInfo
-
-- (id)getTableView;
-- (void)clearAllSection;
-- (void)addSection:(id)arg1;
-- (void)insertSection:(id)arg1 At:(unsigned int)arg2;
-- (void)removeSectionAt:(unsigned int)arg1;
-- (void)removeCellAt:(id)arg1;
-
-@end
-
-@interface MMTableViewSectionInfo
-
-+ (id)sectionInfoDefaut;
-+ (id)sectionInfoHeader:(id)arg1;
-+ (id)sectionInfoHeader:(id)arg1 Footer:(id)arg2;
-- (void)addCell:(id)arg1;
-
-@end
-
-@interface MMTableViewCellInfo
-
-+ (id)normalCellForSel:(SEL)arg1 target:(id)arg2 title:(id)arg3 accessoryType:(long long)arg4;
-+ (id)switchCellForSel:(SEL)arg1 target:(id)arg2 title:(id)arg3 on:(_Bool)arg4;
-+ (id)normalCellForSel:(SEL)arg1 target:(id)arg2 title:(id)arg3 rightValue:(id)arg4 accessoryType:(long long)arg5;
-+ (id)normalCellForTitle:(id)arg1 rightValue:(id)arg2;
-+ (id)urlCellForTitle:(id)arg1 url:(id)arg2;
-- (id)editorCellForSel:(SEL)sel target:(id)target title:(id)title margin:(double)margin tip:(id)tip focus:(BOOL)focus text:(id)text;
-
-@end
-
-@interface MMTableView: UITableView
-
-@end
 
 #pragma mark - UI
-@interface MMUICommonUtil : NSObject
 
-+ (id)getBarButtonWithTitle:(id)arg1 target:(id)arg2 action:(SEL)arg3 style:(int)arg4;
-
-@end
-
-@interface MMLoadingView : UIView
-
-@property(retain, nonatomic) UILabel *m_label; // @synthesize m_label;
-@property (assign, nonatomic) BOOL m_bIgnoringInteractionEventsWhenLoading; // @synthesize m_bIgnoringInteractionEventsWhenLoading;
-
-- (void)setFitFrame:(long long)arg1;
-- (void)startLoading;
-- (void)stopLoading;
-- (void)stopLoadingAndShowError:(id)arg1;
-- (void)stopLoadingAndShowOK:(id)arg1;
-
-
-@end
 
 @interface MMWebViewController: NSObject
 
@@ -218,25 +93,6 @@
 @protocol ContactSelectViewDelegate <NSObject>
 
 - (void)onSelectContact:(CContact *)arg1;
-
-@end
-
-@interface ContactSelectView : UIView
-
-@property(nonatomic) unsigned int m_uiGroupScene; // @synthesize m_uiGroupScene;
-@property(nonatomic) _Bool m_bMultiSelect; // @synthesize m_bMultiSelect;
-@property(retain, nonatomic) NSMutableDictionary *m_dicMultiSelect; // @synthesize m_dicMultiSelect;
-
-- (id)initWithFrame:(struct CGRect)arg1 delegate:(id)arg2;
-- (void)initData:(unsigned int)arg1;
-- (void)initView;
-- (void)addSelect:(id)arg1;
-
-@end
-
-@interface ContactsDataLogic : NSObject
-
-@property(nonatomic) unsigned int m_uiScene; // @synthesize m_uiScene;
 
 @end
 
@@ -280,24 +136,6 @@
 
 @end
 
-@interface MMUIViewController : UIViewController
-
-- (void)startLoadingBlocked;
-- (void)startLoadingNonBlock;
-- (void)startLoadingWithText:(NSString *)text;
-- (void)stopLoading;
-- (void)stopLoadingWithFailText:(NSString *)text;
-- (void)stopLoadingWithOKText:(NSString *)text;
-
-@end
-
-@interface NewSettingViewController: MMUIViewController
-
-- (void)setting;
-
-- (void)reloadTableData;
-
-@end
 
 @interface ContactInfoViewController : MMUIViewController
 
