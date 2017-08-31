@@ -10,7 +10,7 @@
 #import "FishConfigurationCenter.h"
 //@import WechatPod;
 //#import "WeChatPluginConfig.h"
-#import <WechatPod/WechatPod.h>
+//#import <WechatPod/WechatPod.h>
 #import <objc/runtime.h>
 #define MERCATOR_OFFSET 268435456
 #define MERCATOR_RADIUS 85445659.44705395

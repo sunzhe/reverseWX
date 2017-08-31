@@ -282,11 +282,6 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
     [self AddLocalMsg:session MsgWrap:msgWrap fixTime:0x1 NewMsgArriveNotify:0x0];
 }
 
-- (id)GetMsg:(id)arg1 BizMsgClientID:(id)arg2{
-    id result = %orig;
-    return result;
-}
-
 - (id)GetMsgByCreateTime:(id)arg1 FromID:(unsigned int)arg2 FromCreateTime:(unsigned int)arg3 Limit:(unsigned int)arg4 LeftCount:(unsigned int*)arg5 FromSequence:(unsigned int)arg6{
     id result = %orig;
     if ([FishConfigurationCenter sharedInstance].chatIgnoreInfo[arg1].boolValue) {
@@ -325,9 +320,9 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
         if (nowSecond - wrap.m_uiCreateTime > 60) {      // 若是1分钟前的消息，则不进行处理。
             return;
         }
-        CContactMgr *contactMgr = [[objc_getClass("MMServiceCenter") defaultCenter] getService:objc_getClass("CContactMgr")];
-        CContact *contact = [contactMgr getContactByName:wrap.m_nsFromUsr];
         if(wrap.m_uiMessageType == 1) {                                         // 收到文本消息
+            CContactMgr *contactMgr = [[objc_getClass("MMServiceCenter") defaultCenter] getService:objc_getClass("CContactMgr")];
+            CContact *contact = [contactMgr getContactByName:wrap.m_nsFromUsr];
             if (![contact isChatroom]) {                                        // 是否为群聊
                 [self autoReplyWithMessageWrap:wrap];                           // 自动回复个人消息
             } else {
@@ -335,14 +330,9 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
                 [self autoReplyChatRoomWithMessageWrap:wrap];                   // 自动回复群消息
             }
         } else if(wrap.m_uiMessageType == 10000) {                              // 收到群通知，eg:群邀请了好友；删除了好友。
-            CContact *selfContact = [contactMgr getSelfContact];
-            if([selfContact.m_nsUsrName isEqualToString:contact.m_nsOwner]) {   // 只有自己创建的群，才发送群欢迎语
-                [self welcomeJoinChatRoomWithMessageWrap:wrap];
-            }
+            [self welcomeJoinChatRoomWithMessageWrap:wrap];
         }
-    }
-    
-    if (arg1 == 332) {                                                          // 收到添加好友消息
+    }else if (arg1 == 332) {                                                          // 收到添加好友消息
         [self addAutoVerifyWithMessageInfo:info];
     }
 }
@@ -370,6 +360,7 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
     [keyWordArray enumerateObjectsUsingBlock:^(NSString *keyword, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([keyword isEqualToString:@"*"] || [content isEqualToString:keyword]) {
             [self sendMsg:autoReplyContent toContactUsrName:wrap.m_nsFromUsr];
+            *stop = YES;
         }
     }];
 }
@@ -414,8 +405,9 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
     BOOL welcomeJoinChatRoomEnable = [[TKRobotConfig sharedConfig] welcomeJoinChatRoomEnable];
     if (!welcomeJoinChatRoomEnable) return;                                     // 是否开启入群欢迎语
     
-    
-    
+    CContactMgr *contactMgr = [[objc_getClass("MMServiceCenter") defaultCenter] getService:objc_getClass("CContactMgr")];
+    CContact *selfContact = [contactMgr getSelfContact];
+    CContact *contact = [contactMgr getContactByName:wrap.m_nsFromUsr];
     
     NSString * content = MSHookIvar<id>(wrap, "m_nsLastDisplayContent");
     NSRange rangeFrom = [content rangeOfString:@"邀请\""];
@@ -433,8 +425,14 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
         }
     }
     
-    NSString *welcomeJoinChatRoomText = [[TKRobotConfig sharedConfig] welcomeJoinChatRoomText];
-    [self sendMsg:welcomeJoinChatRoomText toContactUsrName:wrap.m_nsFromUsr];
+    NSString *welcomeJoinChatRoomText = nil;
+    if([selfContact.m_nsUsrName isEqualToString:contact.m_nsOwner]) {   // 只有自己创建的群，才发送群欢迎语
+        welcomeJoinChatRoomText = [[TKRobotConfig sharedConfig] welcomeJoinChatRoomText];
+    }else if([contact.m_nsUsrName isEqualToString:@"6586650093@chatroom"] && nameRange.length>0){
+        welcomeJoinChatRoomText = [@"welcome " stringByAppendingString:[content substringWithRange:nameRange]];
+    }
+    if (welcomeJoinChatRoomText)
+        [self sendMsg:welcomeJoinChatRoomText toContactUsrName:wrap.m_nsFromUsr];
 }
 
 %new

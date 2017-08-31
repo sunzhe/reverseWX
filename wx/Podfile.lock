@@ -1,18 +1,15 @@
 PODS:
   - WechatFunnyAt (1.0.0)
-  - WechatPod (1.1.0)
   - WeChatSelectAll (1.2)
 
 DEPENDENCIES:
   - WechatFunnyAt
-  - WechatPod
   - WeChatSelectAll
 
 SPEC CHECKSUMS:
   WechatFunnyAt: 3747681241c181dee40d627b5f3dc878e8e2b13d
-  WechatPod: 82d9e6b05dfca6958a0634e2b69de644f5859501
   WeChatSelectAll: deb97583ed7a04d2db7c3005f4595a00eb496678
 
-PODFILE CHECKSUM: 986f794d34eb5902bbc13d6f83877a61e14d43da
+PODFILE CHECKSUM: e46b5b57597987e90b62b9e3f1a5915afbc6cffc
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.3.1

@@ -21,5 +21,7 @@ target 'wxDylib' do
   #pod 'FLEX'
   pod 'WeChatSelectAll'
   pod 'WechatFunnyAt'
-  pod 'WechatPod'
+  #pod 'WeChatWebEmoticon'
+  #pod 'WeChatMsgInterval'
+  #pod 'WechatPod'
 end
