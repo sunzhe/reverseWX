@@ -107,6 +107,14 @@ CHOptimizedMethod(0,self, NSInteger,MMConfigMgr,getInputLimitEmotionBufSize){
     return bufSize;
 }
 
+CHOptimizedMethod(0,self, NSInteger,MMConfigMgr,getInputLimitFavImageSize){
+    
+    // 突破微信gif大小限制，这里改为是  原来（1048576Byte = 1M）的2倍（即2M），足够收藏大多数gif表情了。
+    NSInteger bufSize =  CHSuper(0,MMConfigMgr, getInputLimitFavImageSize);
+    bufSize = bufSize * 10;
+    return bufSize;
+}
+
 CHConstructor{
     CHLoadLateClass(WebviewJSEventHandler_saveImage);
     CHClassHook(0,WebviewJSEventHandler_saveImage, scanImageBySnapLocation);
@@ -120,5 +128,6 @@ CHConstructor{
     
     CHLoadLateClass(MMConfigMgr);
     CHClassHook(0,MMConfigMgr,getInputLimitEmotionBufSize);
+    CHClassHook(0,MMConfigMgr,getInputLimitFavImageSize);
 
 }

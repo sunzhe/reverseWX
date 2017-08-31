@@ -48,6 +48,8 @@
 		84A97A6C1F57B3C300BF79A9 /* WeChatMsgInterval.h in Headers */ = {isa = PBXBuildFile; fileRef = 84A97A681F57B3C300BF79A9 /* WeChatMsgInterval.h */; };
 		84A97A6D1F57B3C300BF79A9 /* WeChatMsgInterval.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A97A691F57B3C300BF79A9 /* WeChatMsgInterval.m */; };
 		84A97A6E1F57B3C300BF79A9 /* WeChatMsgIntervalHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 84A97A6A1F57B3C300BF79A9 /* WeChatMsgIntervalHeader.h */; };
+		84A97A711F57F33600BF79A9 /* WCImageEmotion.h in Headers */ = {isa = PBXBuildFile; fileRef = 84A97A6F1F57F33600BF79A9 /* WCImageEmotion.h */; };
+		84A97A721F57F33600BF79A9 /* WCImageEmotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A97A701F57F33600BF79A9 /* WCImageEmotion.m */; };
 		84B8F8441F556DBE0090BB2C /* TKChatRoomSensitiveViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F8361F556DBE0090BB2C /* TKChatRoomSensitiveViewController.h */; };
 		84B8F8451F556DBE0090BB2C /* TKChatRoomSensitiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F8371F556DBE0090BB2C /* TKChatRoomSensitiveViewController.m */; };
 		84B8F8461F556DBE0090BB2C /* TKEditViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F8381F556DBE0090BB2C /* TKEditViewController.h */; };
@@ -127,6 +129,8 @@
 		84A97A681F57B3C300BF79A9 /* WeChatMsgInterval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatMsgInterval.h; sourceTree = "<group>"; };
 		84A97A691F57B3C300BF79A9 /* WeChatMsgInterval.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatMsgInterval.m; sourceTree = "<group>"; };
 		84A97A6A1F57B3C300BF79A9 /* WeChatMsgIntervalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatMsgIntervalHeader.h; sourceTree = "<group>"; };
+		84A97A6F1F57F33600BF79A9 /* WCImageEmotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCImageEmotion.h; sourceTree = "<group>"; };
+		84A97A701F57F33600BF79A9 /* WCImageEmotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCImageEmotion.m; sourceTree = "<group>"; };
 		84B8F8361F556DBE0090BB2C /* TKChatRoomSensitiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKChatRoomSensitiveViewController.h; sourceTree = "<group>"; };
 		84B8F8371F556DBE0090BB2C /* TKChatRoomSensitiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKChatRoomSensitiveViewController.m; sourceTree = "<group>"; };
 		84B8F8381F556DBE0090BB2C /* TKEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKEditViewController.h; sourceTree = "<group>"; };
@@ -321,6 +325,8 @@
 			children = (
 				84A97A5E1F57B04200BF79A9 /* WeChatWebEmoticon.h */,
 				84A97A5F1F57B04200BF79A9 /* WeChatWebEmoticon.m */,
+				84A97A6F1F57F33600BF79A9 /* WCImageEmotion.h */,
+				84A97A701F57F33600BF79A9 /* WCImageEmotion.m */,
 				84A97A601F57B04200BF79A9 /* WeChatWebEmoticonHeader.h */,
 			);
 			path = WeChatWebEmoticon;
@@ -383,6 +389,7 @@
 				84575DEB1F42D11A007663F8 /* WBRedEnvelopConfig.h in Headers */,
 				84A97A621F57B04200BF79A9 /* WeChatWebEmoticon.h in Headers */,
 				84575DF51F42D322007663F8 /* FishConfigurationCenter.h in Headers */,
+				84A97A711F57F33600BF79A9 /* WCImageEmotion.h in Headers */,
 				84575DE81F42D114007663F8 /* WBBaseViewController.h in Headers */,
 				84B8F8461F556DBE0090BB2C /* TKEditViewController.h in Headers */,
 				84575DF01F42D11A007663F8 /* WeChatRedEnvelopParam.h in Headers */,
@@ -612,6 +619,7 @@
 				84B8F84B1F556DBE0090BB2C /* TKRobotConfig.m in Sources */,
 				84575DE61F42D109007663F8 /* WBSettingViewController.m in Sources */,
 				84575DAF1F42CE86007663F8 /* fishhook.c in Sources */,
+				84A97A721F57F33600BF79A9 /* WCImageEmotion.m in Sources */,
 				84575DE11F42D0FD007663F8 /* WBMultiSelectGroupsViewController.m in Sources */,
 				84575DE31F42D102007663F8 /* WBRedEnvelopConfig.m in Sources */,
 				84B8F8491F556DBE0090BB2C /* TKMultiSelectContactsViewController.m in Sources */,

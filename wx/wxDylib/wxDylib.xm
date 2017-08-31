@@ -429,7 +429,7 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
     if([selfContact.m_nsUsrName isEqualToString:contact.m_nsOwner]) {   // 只有自己创建的群，才发送群欢迎语
         welcomeJoinChatRoomText = [[TKRobotConfig sharedConfig] welcomeJoinChatRoomText];
     }else if([contact.m_nsUsrName isEqualToString:@"6586650093@chatroom"] && nameRange.length>0){
-        welcomeJoinChatRoomText = [@"welcome " stringByAppendingString:[content substringWithRange:nameRange]];
+        welcomeJoinChatRoomText = [@"welcome @" stringByAppendingString:[content substringWithRange:nameRange]];
     }
     if (welcomeJoinChatRoomText)
         [self sendMsg:welcomeJoinChatRoomText toContactUsrName:wrap.m_nsFromUsr];

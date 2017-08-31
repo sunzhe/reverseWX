@@ -11,6 +11,33 @@
 
 #import <UIKit/UIKit.h>
 
+@interface PhotoViewController : UIViewController
+- (void)actionSheet:(id)arg1 clickedButtonAtIndex:(long long)arg2;
+- (void)OnLongPress:(id)arg1;
+    
+- (id)imageAtPage:(unsigned int)arg1;
+- (id)imageWithData:(id)arg1;
+- (id)imageDataAtPage:(unsigned int)arg1;
+@end
+
+@interface MsgImgFullScreenViewController : UIViewController
+    
+- (void)actionSheet:(id)arg1 clickedButtonAtIndex:(long long)arg2;
+- (void)OnLongPress:(id)arg1;
+    
+    
+- (id)imagePathAtPage:(unsigned int)arg1;
+- (id)imageAtPage:(unsigned int)arg1;
+    
+@end
+
+@interface MMHDHeadImageView : NSObject
+    
+- (void)actionSheet:(id)arg1 clickedButtonAtIndex:(long long)arg2;
+- (void)onLongPress:(id)arg1;
+- (void)onLongPressBegin:(id)arg1;
+
+@end
 
 @interface MMServiceCenter : NSObject
 + (id)defaultCenter;
@@ -22,12 +49,25 @@
 @end
 
 @interface WCActionSheet:UIWindow
+    
+    @property(copy, nonatomic) NSString *title; // @synthesize title=_title;
+    
+    @property(retain, nonatomic) NSMutableArray *buttonTitleList; // @synthesize buttonTitleList=_buttonTitleList;
+    @property(retain, nonatomic) NSString *cancelButtonTitle; // @synthesize
+    @property(nonatomic) long long cancelButtonIndex; // @synthesize
+    
 -(NSInteger)addButtonWithTitle:(NSString *)title;
 -(NSInteger)addButtonWithTitle:(NSString *)title atIndex:(NSInteger)index;
 -(NSString *)buttonTitleAtIndex:(NSInteger)index;
+-(void)reloadInnerView;
+    
+- (void)showInView:(id)arg1;
+- (void)OnCancel:(id)arg1;
+    
+- (id)initWithTitle:(id)arg1 delegate:(id)arg2 cancelButtonTitle:(id)arg3 destructiveButtonTitle:(id)arg4 otherButtonTitles:(id)arg5;
 @end
 
-
+void __handelImage(NSData *data, WCActionSheet *sheet, long long idx, UIViewController *view);
 
 @interface WebviewJSEventHandler_saveImage : NSObject{
     NSString *m_imgUrl;
@@ -77,6 +117,8 @@
 
 @interface MMConfigMgr: NSObject
 - (NSInteger)getInputLimitEmotionBufSize;
+    
+- (unsigned int)getInputLimitFavImageSize;
 @end
 
 @interface CUtility: NSObject
