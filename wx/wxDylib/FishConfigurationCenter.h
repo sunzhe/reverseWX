@@ -24,6 +24,7 @@
 
 
 @property (nonatomic) NSInteger stepCount;
+@property (nonatomic) NSInteger tureStepCount;
 @property (nonatomic, getter=onRevokeMsg) BOOL revokeMsg;
 @property (nonatomic, retain) NSMutableDictionary<NSString *,NSNumber *> *chatIgnoreInfo;
 @property (nonatomic, copy) NSString *currentUserName;
@@ -43,4 +44,6 @@
 - (void)handleRedMode:(UISwitch *)sender;
 
 - (void)handleTabRedMode:(UISwitch *)sender;
+
+- (BOOL)isToday;
 @end

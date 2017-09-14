@@ -37,9 +37,9 @@ CHDeclareClass(PhotoViewController)
 
 CHDeclareClass(WCActionSheet)
 
-CHOptimizedMethod(5, self, id, WCActionSheet, initWithTitle, id, arg1, delegate, id, arg2, cancelButtonTitle, id, arg3, destructiveButtonTitle, id, arg4, otherButtonTitles, id, arg5){
-    return CHSuper(5, WCActionSheet, initWithTitle, arg1, delegate, arg2, cancelButtonTitle, arg3, destructiveButtonTitle, arg4, otherButtonTitles, arg5);
-}
+//CHOptimizedMethod(5, self, id, WCActionSheet, initWithTitle, id, arg1, delegate, id, arg2, cancelButtonTitle, id, arg3, destructiveButtonTitle, id, arg4, otherButtonTitles, id, arg5){
+//    return CHSuper(5, WCActionSheet, initWithTitle, arg1, delegate, arg2, cancelButtonTitle, arg3, destructiveButtonTitle, arg4, otherButtonTitles, arg5);
+//}
 
 CHOptimizedMethod(1, self, void, WCActionSheet, showInView, id, arg1){
     BOOL isImage = NO;
@@ -167,7 +167,7 @@ CHOptimizedMethod(2, self, void, PhotoViewController, actionSheet, WCActionSheet
 
 CHConstructor{
     CHLoadLateClass(WCActionSheet);
-    CHClassHook(5, WCActionSheet, initWithTitle, delegate, cancelButtonTitle, destructiveButtonTitle, otherButtonTitles);
+    //CHClassHook(5, WCActionSheet, initWithTitle, delegate, cancelButtonTitle, destructiveButtonTitle, otherButtonTitles);
     CHClassHook(1, WCActionSheet, showInView);
     
     CHLoadLateClass(MsgImgFullScreenViewController);

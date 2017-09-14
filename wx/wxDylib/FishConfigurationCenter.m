@@ -53,13 +53,31 @@ BOOL __ignoreSaveValue;
     center.tabRedMode = instance.tabRedMode;
     center.redMode = instance.redMode;
     center.friendMode = instance.friendMode;
-    center.nightMode = instance.isNightMode;
-    center.stepCount = instance.stepCount;
+    center.nightMode = instance.nightMode;
     center.revokeMsg = instance.onRevokeMsg;
     center.chatIgnoreInfo = instance.chatIgnoreInfo;
     center.currentUserName = instance.currentUserName;
     center.lastChangeStepCountDate = instance.lastChangeStepCountDate;
     center.locationInfo = instance.locationInfo;
+    if (instance.isToday) {
+        center.stepCount = instance.stepCount;
+    }
+}
+
+
+- (BOOL)isToday{
+    BOOL modifyToday = NO;
+    if (_lastChangeStepCountDate){
+        NSCalendar *cal = [NSCalendar currentCalendar];
+        NSDateComponents *components = [cal components:(NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
+        NSDate *today = [cal dateFromComponents:components];
+        components = [cal components:(NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:_lastChangeStepCountDate];
+        NSDate *otherDate = [cal dateFromComponents:components];
+        if([today isEqualToDate:otherDate]) {
+            modifyToday = YES;
+        }
+    }
+    return modifyToday;
 }
 
 #pragma mark - Handle Events

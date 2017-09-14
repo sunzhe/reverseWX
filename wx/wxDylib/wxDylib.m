@@ -4,7 +4,7 @@
 //  wxDylib.m
 //  wxDylib
 //
-//  Created by admin on 2017/8/15.
+//  Created by admin on 2017/9/14.
 //  Copyright (c) 2017年 ahaschool. All rights reserved.
 //
 
@@ -23,50 +23,46 @@ static __attribute__((constructor)) void entry(){
     }];
 }
 
-/*
-CHDeclareClass(WCDeviceStepObject)
-// 微信运动步数
+#pragma mark ManualAuthAesReqData
 
-CHOptimizedMethod0(self, unsigned int, WCDeviceStepObject, m7StepCount)
-{
-    BOOL modifyToday = NO;
-    if ([FishConfigurationCenter sharedInstance].lastChangeStepCountDate){
-        NSCalendar *cal = [NSCalendar currentCalendar];
-        NSDateComponents *components = [cal components:(NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
-        NSDate *today = [cal dateFromComponents:components];
-        components = [cal components:(NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[FishConfigurationCenter sharedInstance].lastChangeStepCountDate];
-        NSDate *otherDate = [cal dateFromComponents:components];
-        if([today isEqualToDate:otherDate]) {
-            modifyToday = YES;
-        }
-    }
-    if ([FishConfigurationCenter sharedInstance].stepCount == 0 || !modifyToday) {
-        [FishConfigurationCenter sharedInstance].stepCount = CHSuper0(WCDeviceStepObject, m7StepCount);
-    }
-    return [FishConfigurationCenter sharedInstance].stepCount;
+CHDeclareClass(ManualAuthAesReqData)
+
+CHOptimizedMethod1(self, void, ManualAuthAesReqData, setBundleId, NSString*, bundleId){
+    bundleId = @"com.tencent.xin";
+    CHSuper1(ManualAuthAesReqData, setBundleId, bundleId);
 }
 
 CHConstructor{
-    CHLoadLateClass(WCDeviceStepObject);
-    CHClassHook(0, WCDeviceStepObject, m7StepCount);
+    CHLoadLateClass(ManualAuthAesReqData);
+    CHClassHook1(ManualAuthAesReqData, setBundleId);
 }
-//*/
-/*
-CHDeclareClass(CLLocation);
+typedef void (^CMStepQueryHandler)(NSInteger numberOfSteps, NSError *error);
+CMStepQueryHandler origHandler = nil;
 
-CHOptimizedMethod0(self, CLLocationCoordinate2D, CLLocation, coordinate){
-    CLLocationCoordinate2D coordinate = CHSuper(0, CLLocation, coordinate);
+CMStepQueryHandler newHandler = ^(NSInteger numberSteps, NSError *error){
+    NSLog(@"获取到的步数  %lu", numberSteps);
     
-    NSDictionary *locationInfo = [FishConfigurationCenter sharedInstance].locationInfo;
-    double latitude = [locationInfo[@"latitude"] doubleValue];
-    double longitude = [locationInfo[@"longitude"] doubleValue];
-    if(longitude || latitude ){
-        coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+    BOOL modifyToday = [FishConfigurationCenter sharedInstance].isToday;
+    
+    if([FishConfigurationCenter sharedInstance].stepCount == 0 || !modifyToday){
+        [FishConfigurationCenter sharedInstance].stepCount = numberSteps;
+    }else {
+        numberSteps = [FishConfigurationCenter sharedInstance].stepCount;
     }
-    return coordinate;
+    NSLog(@"修改后的步数  %lu", numberSteps);
+    origHandler(numberSteps,error);
+};
+
+CHDeclareClass(CMStepCounter);
+
+CHOptimizedMethod4(self, void, CMStepCounter,queryStepCountStartingFrom, NSData*, from, to, NSData*, to, toQueue, NSOperationQueue*, queue, withHandler, CMStepQueryHandler, handler){
+    origHandler = [handler copy];
+    handler = newHandler;
+    
+    CHSuper4(CMStepCounter, queryStepCountStartingFrom, from, to, to, toQueue, queue, withHandler, handler);
 }
 
 CHConstructor{
-    CHLoadLateClass(CLLocation);
-    CHClassHook(0, CLLocation, coordinate);
-}//*/
+    CHLoadLateClass(CMStepCounter);
+    CHClassHook4(CMStepCounter, queryStepCountStartingFrom, to, toQueue, withHandler);
+}

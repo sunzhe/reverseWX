@@ -172,3 +172,7 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList);
 @interface MMBadgeView : UIView
 
 @end
+
+@interface WCTimeLineCellView : UIView
+- (void)initTimeLabel;
+@end

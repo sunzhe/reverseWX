@@ -166,7 +166,8 @@
 }
 
 - (MMTableViewCellInfo *)changeStepCountCell{
-    return [objc_getClass("MMTableViewCellInfo") editorCellForSel:@selector(handleStepCount:) target:[FishConfigurationCenter sharedInstance] title:@"微信运动步数" margin:300.0 tip:@"请输入步数" focus:NO text:[NSString stringWithFormat:@"%ld", (long)[FishConfigurationCenter sharedInstance].stepCount]];
+    NSInteger stepCount = [FishConfigurationCenter sharedInstance].stepCount;
+    return [objc_getClass("MMTableViewCellInfo") editorCellForSel:@selector(handleStepCount:) target:[FishConfigurationCenter sharedInstance] title:@"微信运动步数" margin:300.0 tip:@"请输入步数" focus:NO text:[NSString stringWithFormat:@"%ld", stepCount]];
 }
 
 - (MMTableViewCellInfo *)createReceiveSelfRedEnvelopCell {

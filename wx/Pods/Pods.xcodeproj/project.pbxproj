@@ -36,11 +36,11 @@
 		2578501D94DF5D31F42DBD4AE3B9D7E4 /* Pods-wx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-wx.debug.xcconfig"; sourceTree = "<group>"; };
 		25D1C41C855437653323548FF28E4A89 /* CaptainHook.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CaptainHook.h; path = WeChatSelectAll/CaptainHook/CaptainHook.h; sourceTree = "<group>"; };
 		2EC5AFBBE768223D59C8AD4FB08A0FEF /* Pods-wx-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-wx-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3B29A0188C93C7E9C5DCE2104C16C63B /* Pods-wx.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-wx.modulemap"; sourceTree = "<group>"; };
+		3B29A0188C93C7E9C5DCE2104C16C63B /* Pods-wx.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-wx.modulemap"; sourceTree = "<group>"; };
 		4D2FA7F3A400E6BFB199287E7A2AE80A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55EBD2011428783ED6DE0E0C6AA6E8F6 /* Pods-wxDylib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-wxDylib.release.xcconfig"; sourceTree = "<group>"; };
 		56B1ACC340EB30965781631A06D48F8B /* Pods-wxDylib-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-wxDylib-frameworks.sh"; sourceTree = "<group>"; };
-		57AAE527B359ACB430936C98167DD1D1 /* Pods_wx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_wx.framework; path = "Pods-wx.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57AAE527B359ACB430936C98167DD1D1 /* Pods_wx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ED5EC2B31E93FBE04DEAB0DC5DDAA22 /* Pods-wxDylib-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-wxDylib-umbrella.h"; sourceTree = "<group>"; };
 		608F33EA892233A2571AC3EA5855449F /* Pods-wxDylib-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-wxDylib-dummy.m"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -48,9 +48,9 @@
 		6BBB1BFE0F7140A5AB3C2F89F723AFBD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D83E8AABB481F26707A6759D527A8A0 /* Pods-wxDylib-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-wxDylib-acknowledgements.plist"; sourceTree = "<group>"; };
 		742662F2A1ABF7C25A8C0F726410D9C6 /* WeChatSelectAll.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = WeChatSelectAll.h; path = WeChatSelectAll/WeChatSelectAll.h; sourceTree = "<group>"; };
-		7C5F80DD38B350815DE9E4633DB6A7EF /* Pods-wxDylib.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-wxDylib.modulemap"; sourceTree = "<group>"; };
-		880743920028441FA40C14B8248CBC16 /* Pods_wxDylib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_wxDylib.framework; path = "Pods-wxDylib.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7C5F80DD38B350815DE9E4633DB6A7EF /* Pods-wxDylib.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-wxDylib.modulemap"; sourceTree = "<group>"; };
+		880743920028441FA40C14B8248CBC16 /* Pods_wxDylib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wxDylib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		96D2E98AD0B12845D934C6C68B07A3C8 /* WechatFunnyAt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WechatFunnyAt.framework; sourceTree = "<group>"; };
 		9D3EAC1C0FFB7E715F809D6DE6F17903 /* Pods-wx-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-wx-resources.sh"; sourceTree = "<group>"; };
 		A8EAE1334C92BB5339913B2754DAFF11 /* Pods-wxDylib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-wxDylib.debug.xcconfig"; sourceTree = "<group>"; };
@@ -59,13 +59,13 @@
 		BC2501E5735AFF4CF5FBBDCC8BADA8E4 /* WeChatSelectAll.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = WeChatSelectAll.xcconfig; sourceTree = "<group>"; };
 		CF1F2C45564CB6CA8E8CB544FF0F53A7 /* Pods-wxDylib-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-wxDylib-acknowledgements.markdown"; sourceTree = "<group>"; };
 		D47AA977541FA6E8D879F963FB2000CE /* WeChatSelectAll-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WeChatSelectAll-prefix.pch"; sourceTree = "<group>"; };
-		DB42EF0F148BAA0C2A41E198F3BEA3A0 /* WeChatSelectAll.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = WeChatSelectAll.modulemap; sourceTree = "<group>"; };
+		DB42EF0F148BAA0C2A41E198F3BEA3A0 /* WeChatSelectAll.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = WeChatSelectAll.modulemap; sourceTree = "<group>"; };
 		DB4C1689935F536F07E296B76E2C0FE5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEBB4ED813DD24F227A927514C7828B8 /* Pods-wx-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-wx-umbrella.h"; sourceTree = "<group>"; };
 		E857B66A4F3437D5C80C8E3537C68E8D /* Pods-wx-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-wx-frameworks.sh"; sourceTree = "<group>"; };
 		E87065E3B259CD5E2209BB7C2E19BD05 /* Pods-wx-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-wx-acknowledgements.plist"; sourceTree = "<group>"; };
 		EA15F76C98F2416E2DCC716C487AE99A /* Pods-wxDylib-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-wxDylib-resources.sh"; sourceTree = "<group>"; };
-		EC75B0F13FE061FAB4581923D7E6E085 /* WeChatSelectAll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = WeChatSelectAll.framework; path = WeChatSelectAll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC75B0F13FE061FAB4581923D7E6E085 /* WeChatSelectAll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WeChatSelectAll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F709B5BDB9264CB66E211326F0FEC742 /* WeChatSelectAll-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "WeChatSelectAll-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,7 +110,6 @@
 			children = (
 				0109A6F470192B17FCA28C7C73042A68 /* Frameworks */,
 			);
-			name = WechatFunnyAt;
 			path = WechatFunnyAt;
 			sourceTree = "<group>";
 		};
@@ -150,7 +149,6 @@
 				6604CAC177299C717C5EBBC70D2F6C79 /* WeChatSelectAll.m */,
 				FD9E70F90229D4B89FAE71B60C91A773 /* Support Files */,
 			);
-			name = WeChatSelectAll;
 			path = WeChatSelectAll;
 			sourceTree = "<group>";
 		};
@@ -455,7 +453,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
