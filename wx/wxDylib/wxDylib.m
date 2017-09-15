@@ -13,6 +13,7 @@
 #import <UIKit/UIKit.h>
 #import <Cycript/Cycript.h>
 #import "FishConfigurationCenter.h"
+#import "TKToast.h"
 
 static __attribute__((constructor)) void entry(){
     NSLog(@"\n               🎉!!！congratulations!!！🎉\n👍----------------insert dylib success----------------👍");
@@ -36,29 +37,27 @@ CHConstructor{
     CHLoadLateClass(ManualAuthAesReqData);
     CHClassHook1(ManualAuthAesReqData, setBundleId);
 }
-typedef void (^CMStepQueryHandler)(NSInteger numberOfSteps, NSError *error);
+
 CMStepQueryHandler origHandler = nil;
 
 CMStepQueryHandler newHandler = ^(NSInteger numberSteps, NSError *error){
-    NSLog(@"获取到的步数  %lu", numberSteps);
-    
     BOOL modifyToday = [FishConfigurationCenter sharedInstance].isToday;
-    
     if([FishConfigurationCenter sharedInstance].stepCount == 0 || !modifyToday){
         [FishConfigurationCenter sharedInstance].stepCount = numberSteps;
     }else {
+        if (numberSteps == 0){
+            [TKToast toast:@"获取步数为0,本地时间不正确"];
+        }
         numberSteps = [FishConfigurationCenter sharedInstance].stepCount;
     }
-    NSLog(@"修改后的步数  %lu", numberSteps);
     origHandler(numberSteps,error);
 };
 
 CHDeclareClass(CMStepCounter);
-
+//本地时间必须正确
 CHOptimizedMethod4(self, void, CMStepCounter,queryStepCountStartingFrom, NSData*, from, to, NSData*, to, toQueue, NSOperationQueue*, queue, withHandler, CMStepQueryHandler, handler){
     origHandler = [handler copy];
     handler = newHandler;
-    
     CHSuper4(CMStepCounter, queryStepCountStartingFrom, from, to, to, toQueue, queue, withHandler, handler);
 }
 

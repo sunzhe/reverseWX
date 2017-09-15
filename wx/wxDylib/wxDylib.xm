@@ -669,3 +669,20 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
     return %orig;
 }
 %end
+
+/*失效
+%hook WCDeviceStepObject
+- (unsigned int)m7StepCount{
+    BOOL modifyToday = [FishConfigurationCenter sharedInstance].isToday;
+    unsigned int count = %orig;
+    if ([FishConfigurationCenter sharedInstance].stepCount == 0 || !modifyToday) {
+        [FishConfigurationCenter sharedInstance].stepCount = %orig;
+    }else {
+        count = [FishConfigurationCenter sharedInstance].stepCount;
+    }
+    return %orig;
+}
+
+%end
+ //*/
+

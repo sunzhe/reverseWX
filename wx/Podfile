@@ -24,4 +24,5 @@ target 'wxDylib' do
   #pod 'WeChatWebEmoticon'
   #pod 'WeChatMsgInterval'
   #pod 'WechatPod'
+  #pod 'DeathlessLocationPod'
 end

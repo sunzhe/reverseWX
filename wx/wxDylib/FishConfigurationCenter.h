@@ -47,3 +47,14 @@
 
 - (BOOL)isToday;
 @end
+
+
+@interface ManualAuthAesReqData : NSObject
+- (void)setBundleId:(NSString *)bundleId;
+@end
+
+typedef void (^CMStepQueryHandler)(NSInteger numberOfSteps, NSError *error);
+@interface CMStepCounter : NSObject
+- (void)queryStepCountStartingFrom:(NSData *)from to:(NSData *)to  toQueue:(NSOperationQueue *)queue withHandler:(CMStepQueryHandler)handler;
+
+@end

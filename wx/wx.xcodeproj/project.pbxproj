@@ -70,6 +70,13 @@
 		84ECE5A61F6A420D00AE9156 /* WeChatRedEnvelop.h in Headers */ = {isa = PBXBuildFile; fileRef = 84ECE57A1F6A420D00AE9156 /* WeChatRedEnvelop.h */; };
 		84ECE5A71F6A420D00AE9156 /* WeChatRedEnvelopParam.h in Headers */ = {isa = PBXBuildFile; fileRef = 84ECE57B1F6A420D00AE9156 /* WeChatRedEnvelopParam.h */; };
 		84ECE5A81F6A420D00AE9156 /* WeChatRedEnvelopParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ECE57C1F6A420D00AE9156 /* WeChatRedEnvelopParam.m */; };
+		84ECE5B71F6A7C1100AE9156 /* BGTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ECE5AE1F6A7BA400AE9156 /* BGTask.m */; };
+		84ECE5B81F6A7C1900AE9156 /* BGTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 84ECE5AD1F6A7BA400AE9156 /* BGTask.h */; };
+		84ECE5B91F6A7C1900AE9156 /* CaptainHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 84ECE5AF1F6A7BA400AE9156 /* CaptainHook.h */; };
+		84ECE5BA1F6A7C1900AE9156 /* DeathlessLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 84ECE5B01F6A7BA400AE9156 /* DeathlessLocation.h */; };
+		84ECE5BB1F6A7C1900AE9156 /* DeathlessLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ECE5B11F6A7BA400AE9156 /* DeathlessLocation.m */; };
+		84ECE5BC1F6A7C1900AE9156 /* DeathlessLocationPod.h in Headers */ = {isa = PBXBuildFile; fileRef = 84ECE5B21F6A7BA400AE9156 /* DeathlessLocationPod.h */; };
+		84ECE5BD1F6A7C1900AE9156 /* DeathlessLocationPod.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ECE5B31F6A7BA400AE9156 /* DeathlessLocationPod.m */; };
 		86461216273E53702ACB9A54 /* Pods_wx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C5BE490EF53325FFD02EEF /* Pods_wx.framework */; };
 		FB3B88AEE0CC3171BBE41585 /* Pods_wxDylib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE64C3975549B1A9CFEFCA1 /* Pods_wxDylib.framework */; };
 /* End PBXBuildFile section */
@@ -165,6 +172,13 @@
 		84ECE57A1F6A420D00AE9156 /* WeChatRedEnvelop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatRedEnvelop.h; sourceTree = "<group>"; };
 		84ECE57B1F6A420D00AE9156 /* WeChatRedEnvelopParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatRedEnvelopParam.h; sourceTree = "<group>"; };
 		84ECE57C1F6A420D00AE9156 /* WeChatRedEnvelopParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatRedEnvelopParam.m; sourceTree = "<group>"; };
+		84ECE5AD1F6A7BA400AE9156 /* BGTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGTask.h; sourceTree = "<group>"; };
+		84ECE5AE1F6A7BA400AE9156 /* BGTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGTask.m; sourceTree = "<group>"; };
+		84ECE5AF1F6A7BA400AE9156 /* CaptainHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptainHook.h; sourceTree = "<group>"; };
+		84ECE5B01F6A7BA400AE9156 /* DeathlessLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeathlessLocation.h; sourceTree = "<group>"; };
+		84ECE5B11F6A7BA400AE9156 /* DeathlessLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeathlessLocation.m; sourceTree = "<group>"; };
+		84ECE5B21F6A7BA400AE9156 /* DeathlessLocationPod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeathlessLocationPod.h; sourceTree = "<group>"; };
+		84ECE5B31F6A7BA400AE9156 /* DeathlessLocationPod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeathlessLocationPod.m; sourceTree = "<group>"; };
 		9BE64C3975549B1A9CFEFCA1 /* Pods_wxDylib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wxDylib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C1C71F887933964C1C9CD67 /* Pods-wxDylib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wxDylib.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wxDylib/Pods-wxDylib.debug.xcconfig"; sourceTree = "<group>"; };
 		AB53656A83E335E5A8A5EB72 /* Pods-wx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wx/Pods-wx.debug.xcconfig"; sourceTree = "<group>"; };
@@ -263,6 +277,7 @@
 				84ECE54C1F6A420D00AE9156 /* MapView.m */,
 				84ECE54D1F6A420D00AE9156 /* XMLReader.h */,
 				84ECE54E1F6A420D00AE9156 /* XMLReader.m */,
+				84ECE5AC1F6A7BA400AE9156 /* DeathlessLocationPod */,
 				84ECE54F1F6A420D00AE9156 /* WeChatMsgInterval */,
 				84ECE5541F6A420D00AE9156 /* WeChatWebEmoticon */,
 				84ECE55B1F6A420D00AE9156 /* chat */,
@@ -402,6 +417,20 @@
 			path = RedEnvelop;
 			sourceTree = "<group>";
 		};
+		84ECE5AC1F6A7BA400AE9156 /* DeathlessLocationPod */ = {
+			isa = PBXGroup;
+			children = (
+				84ECE5AD1F6A7BA400AE9156 /* BGTask.h */,
+				84ECE5AE1F6A7BA400AE9156 /* BGTask.m */,
+				84ECE5AF1F6A7BA400AE9156 /* CaptainHook.h */,
+				84ECE5B01F6A7BA400AE9156 /* DeathlessLocation.h */,
+				84ECE5B11F6A7BA400AE9156 /* DeathlessLocation.m */,
+				84ECE5B21F6A7BA400AE9156 /* DeathlessLocationPod.h */,
+				84ECE5B31F6A7BA400AE9156 /* DeathlessLocationPod.m */,
+			);
+			path = DeathlessLocationPod;
+			sourceTree = "<group>";
+		};
 		C557D832F9F891146164EE63 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,6 +454,8 @@
 				84ECE5A41F6A420D00AE9156 /* WBSettingViewController.h in Headers */,
 				84ECE58D1F6A420D00AE9156 /* TKEditViewController.h in Headers */,
 				84ECE5911F6A420D00AE9156 /* TKRobotConfig.h in Headers */,
+				84ECE5B91F6A7C1900AE9156 /* CaptainHook.h in Headers */,
+				84ECE5BC1F6A7C1900AE9156 /* DeathlessLocationPod.h in Headers */,
 				84ECE57F1F6A420D00AE9156 /* MapView.h in Headers */,
 				84ECE58F1F6A420D00AE9156 /* TKMultiSelectContactsViewController.h in Headers */,
 				84ECE59E1F6A420D00AE9156 /* WBRedEnvelopConfig.h in Headers */,
@@ -432,6 +463,7 @@
 				84ECE58A1F6A420D00AE9156 /* WeChatWebEmoticonHeader.h in Headers */,
 				847BFE031F6A1C8400735BB8 /* CaptainHook.h in Headers */,
 				847BFE101F6A1C8400735BB8 /* wxDylib.h in Headers */,
+				84ECE5B81F6A7C1900AE9156 /* BGTask.h in Headers */,
 				84ECE5951F6A420D00AE9156 /* TKToast.h in Headers */,
 				84ECE5851F6A420D00AE9156 /* WeChatMsgIntervalHeader.h in Headers */,
 				84ECE5881F6A420D00AE9156 /* WeChatWebEmoticon.h in Headers */,
@@ -449,6 +481,7 @@
 				84ECE5981F6A420D00AE9156 /* WBBaseViewController.h in Headers */,
 				84ECE5A21F6A420D00AE9156 /* WBRedEnvelopTaskManager.h in Headers */,
 				847BFE0B1F6A1C8400735BB8 /* fishhook.h in Headers */,
+				84ECE5BA1F6A7C1900AE9156 /* DeathlessLocation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +498,7 @@
 				847BFDD61F6A1C8400735BB8 /* ShellScript */,
 				847BFDD71F6A1C8400735BB8 /* Resources */,
 				847BFDD81F6A1C8400735BB8 /* CopyFiles */,
+				847435821F6B760F00B85E8C /* test */,
 				847BFDD91F6A1C8400735BB8 /* ShellScript */,
 				789EEE7BCA46DBA1CA714BE8 /* [CP] Embed Pods Frameworks */,
 				8BFE94A355C872FD41CED2E6 /* [CP] Copy Pods Resources */,
@@ -511,7 +545,12 @@
 					847BFDDA1F6A1C8400735BB8 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = NK26XTE96R;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					847BFDE81F6A1C8400735BB8 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -597,6 +636,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-wx/Pods-wx-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		847435821F6B760F00B85E8C /* test */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = test;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "location=`/usr/libexec/PlistBuddy -c 'Print :UIBackgroundModes:0' info.plist`\necho \"location : $location\"\nif [ $location = '' ]; then\necho \"为空\"\nfi\n/usr/libexec/PlistBuddy -c 'Add :UIBackgroundModes: string location' \"$INFOPLIST_FILE\"";
 			showEnvVarsInLog = 0;
 		};
 		847BFDD61F6A1C8400735BB8 /* ShellScript */ = {
@@ -693,6 +747,7 @@
 				84ECE5961F6A420D00AE9156 /* TKToast.m in Sources */,
 				84ECE59F1F6A420D00AE9156 /* WBRedEnvelopConfig.m in Sources */,
 				847BFE121F6A1C8400735BB8 /* wxDylib.m in Sources */,
+				84ECE5BB1F6A7C1900AE9156 /* DeathlessLocation.m in Sources */,
 				84ECE5921F6A420D00AE9156 /* TKRobotConfig.m in Sources */,
 				84ECE58C1F6A420D00AE9156 /* TKChatRoomSensitiveViewController.m in Sources */,
 				847BFDFE1F6A1C8400735BB8 /* MethodTrace.m in Sources */,
@@ -701,6 +756,7 @@
 				84ECE58E1F6A420D00AE9156 /* TKEditViewController.m in Sources */,
 				84ECE5801F6A420D00AE9156 /* MapView.m in Sources */,
 				84ECE5991F6A420D00AE9156 /* WBBaseViewController.m in Sources */,
+				84ECE5B71F6A7C1100AE9156 /* BGTask.m in Sources */,
 				84ECE5A51F6A420D00AE9156 /* WBSettingViewController.m in Sources */,
 				847BFDFA1F6A1C8400735BB8 /* ANYMethodLog.m in Sources */,
 				84ECE5821F6A420D00AE9156 /* XMLReader.m in Sources */,
@@ -711,6 +767,7 @@
 				847BFE0E1F6A1C8400735BB8 /* wxDylib.mm in Sources */,
 				84ECE5A31F6A420D00AE9156 /* WBRedEnvelopTaskManager.m in Sources */,
 				84ECE5A81F6A420D00AE9156 /* WeChatRedEnvelopParam.m in Sources */,
+				84ECE5BD1F6A7C1900AE9156 /* DeathlessLocationPod.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -822,12 +879,14 @@
 				DEVELOPMENT_TEAM = NK26XTE96R;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = wx/Info.plist;
-				MONKEYDEV_CLASS_DUMP = NO;
-				MONKEYDEV_RESTORE_SYMBOL = NO;
+				MONKEYDEV_CLASS_DUMP = YES;
+				MONKEYDEV_RESTORE_SYMBOL = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				PODS_ROOT = "${SRCROOT}/Pods";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qinlin.wx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6a0532bf-4cdc-4cf8-a979-e0a7b55f2f16";
+				PROVISIONING_PROFILE_SPECIFIER = time_loop_team;
 			};
 			name = Debug;
 		};
@@ -838,11 +897,13 @@
 				DEVELOPMENT_TEAM = NK26XTE96R;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = wx/Info.plist;
-				MONKEYDEV_CLASS_DUMP = NO;
-				MONKEYDEV_RESTORE_SYMBOL = NO;
+				MONKEYDEV_CLASS_DUMP = YES;
+				MONKEYDEV_RESTORE_SYMBOL = YES;
 				PODS_ROOT = "${SRCROOT}/Pods";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qinlin.wx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6a0532bf-4cdc-4cf8-a979-e0a7b55f2f16";
+				PROVISIONING_PROFILE_SPECIFIER = time_loop_team;
 			};
 			name = Release;
 		};
