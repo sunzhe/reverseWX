@@ -20,12 +20,23 @@ CHPropertyRetainNonatomic(BaseChatViewModel, NSString *, intervaleTime, setInter
 
 CHDeclareClass(CommonMessageCellView)
 CHPropertyRetainNonatomic(CommonMessageCellView, UIView *, expandView, setExpandView);
+CHPropertyRetainNonatomic(CommonMessageCellView, UIView *, expandBtn, setExpandBtn);
 
 CHOptimizedMethod(1, self,id,CommonMessageCellView,initWithViewModel,BaseChatViewModel *,arg1){
     CommonMessageCellView *view =  CHSuper(1,CommonMessageCellView,initWithViewModel,arg1);
     view.expandView = [[UILabel alloc] init];
     view.expandView.font = [UIFont systemFontOfSize:12];
+    view.expandBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    view.expandBtn.frame = CGRectMake(-20, 0, 20, 20);
+    view.expandBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    [view.expandBtn setTitle:@"+1" forState:UIControlStateNormal];
+    [view.expandBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [view.expandBtn addTarget:self action:@selector(onExpandBtnClick) forControlEvents:UIControlEventTouchUpInside];
     return view;
+}
+
+CHMethod0(void, CommonMessageCellView, onExpandBtnClick){
+    
 }
 
 CHOptimizedMethod(0, self,void,CommonMessageCellView,updateNodeStatus){
@@ -52,9 +63,10 @@ CHOptimizedMethod(0, self,void,CommonMessageCellView,updateNodeStatus){
             centerY = CGRectGetMaxY(m_contentView.frame) - 8 - self.expandView.bounds.size.height / 2;
         }
         self.expandView.center = CGPointMake(centerX, centerY);
-        
+        self.expandBtn.center = CGPointMake(CGRectGetMaxX(self.expandView.frame)+20, centerY);
         if (![self.expandView isDescendantOfView:self]) {
             [self addSubview:self.expandView];
+            [self addSubview:self.expandBtn];
         }
         
         
@@ -170,8 +182,12 @@ CHConstructor{
     CHClassHook(1,CommonMessageCellView, initWithViewModel);
     CHClassHook(0, CommonMessageCellView,expandView);
     CHClassHook(1, CommonMessageCellView,setExpandView);
-    CHClassHook(0, CommonMessageCellView,updateNodeStatus);
     
+    CHClassHook(0, CommonMessageCellView,expandBtn);
+    CHClassHook(1, CommonMessageCellView,setExpandBtn);
+    
+    CHClassHook(0, CommonMessageCellView,updateNodeStatus);
+    CHClassHook(0, CommonMessageCellView,onExpandBtnClick);
     
     CHLoadLateClass(BaseMsgContentViewController);
     CHClassHook(1, BaseMsgContentViewController,getTimeIntervalDescriptionWithTime);

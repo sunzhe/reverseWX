@@ -13,14 +13,14 @@
 #import <UIKit/UIKit.h>
 
 #import "DeathlessLocation.h"
-
+#import "BackgroundTask.h"
 CHDeclareClass(MicroMessengerAppDelegate)
 
 CHOptimizedMethod2(self, void, MicroMessengerAppDelegate, application, UIApplication *, application, didFinishLaunchingWithOptions, NSDictionary *, options)
 {
     CHSuper2(MicroMessengerAppDelegate, application, application, didFinishLaunchingWithOptions, options);
-    
-    
+    [BackgroundTask shareTask];
+    /*
     UIAlertView *alert;
     //判断定位权限
     if([UIApplication sharedApplication].backgroundRefreshStatus == UIBackgroundRefreshStatusDenied)
@@ -56,6 +56,7 @@ CHOptimizedMethod2(self, void, MicroMessengerAppDelegate, application, UIApplica
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"__applicationWillTerminateDate"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+     //*/
 }
 CHConstructor{
     CHLoadLateClass(MicroMessengerAppDelegate);

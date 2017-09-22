@@ -8,12 +8,30 @@
 
 #import "DeathlessLocation.h"
 #import "BGTask.h"
+#import <UserNotifications/UserNotifications.h>
+#import "BackgroundTask.h"
 @interface DeathlessLocation()
 @property (strong , nonatomic) BGTask *bgTask;                      //后台任务
 @property (strong , nonatomic) NSTimer *restarTimer;                //重新开启后台任务定时器
 @property (strong , nonatomic) NSTimer *closeCollectLocationTimer;  //关闭定位定时器 （目的是减少耗电）
 @property (assign , nonatomic) BOOL  isWorking;                     //定位进行中
 @end
+
+
+void  customPushLog(NSString *log){
+    
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+    content.badge = @(1);
+    content.body = log;
+    //推送类型
+    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:1 repeats:NO];
+    
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"log" content:content trigger:trigger];
+    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        //NSLog(@"iOS 10 发送推送， error：%@", error);
+    }];
+}
+
 @implementation DeathlessLocation
 
 #pragma mark - 初始化
@@ -56,6 +74,10 @@
                                                  selector:@selector(applicationWillTerminate)
                                                      name:UIApplicationWillTerminateNotification
                                                    object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(applicationDidBecomeActive)
+                                                     name:UIApplicationDidBecomeActiveNotification
+                                                   object:nil];
     }
     return self;
 }
@@ -70,11 +92,18 @@
     [[NSUserDefaults standardUserDefaults] setObject:date.description forKey:@"__applicationWillTerminateDate"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
+- (void)applicationDidBecomeActive{
+    CLLocationManager *locationManager = [DeathlessLocation shareBGLocation];
+    [locationManager stopUpdatingLocation];
+    [locationManager stopMonitoringSignificantLocationChanges];
+}
+
 //后台监听方法
 - (void)applicationEnterBackground
 {
     //[self applicationWillTerminate];
-    NSLog(@" in background");
+    customPushLog(@" in background");
     CLLocationManager *locationManager = [DeathlessLocation shareBGLocation];
     locationManager.delegate = self;
     locationManager.distanceFilter = kCLDistanceFilterNone; // 不移动也可以后台刷新回调
@@ -83,6 +112,7 @@
         [locationManager requestAlwaysAuthorization];
     }
     [locationManager startUpdatingLocation];
+    [locationManager startMonitoringSignificantLocationChanges];
     [_bgTask beginNewBackgroundTask];
 }
 
@@ -90,19 +120,19 @@
 
 //开启服务
 - (void)startLocation {
-    NSLog(@"开启定位");
+    customPushLog(@"开启定位");
     
     if ([CLLocationManager locationServicesEnabled] == NO) {
-        NSLog(@"locationServicesEnabled false");
+        customPushLog(@"locationServicesEnabled false");
         UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled" message:@"You currently have all location services for this device disabled" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [servicesDisabledAlert show];
     } else {
         CLAuthorizationStatus authorizationStatus = [CLLocationManager authorizationStatus];
         
         if(authorizationStatus == kCLAuthorizationStatusDenied || authorizationStatus == kCLAuthorizationStatusRestricted){
-            NSLog(@"authorizationStatus failed");
+            customPushLog(@"authorizationStatus failed");
         } else {
-            NSLog(@"authorizationStatus authorized");
+            customPushLog(@"authorizationStatus authorized");
             CLLocationManager *locationManager = [DeathlessLocation shareBGLocation];
             locationManager.distanceFilter = kCLDistanceFilterNone;
             
@@ -110,6 +140,7 @@
                 [locationManager requestAlwaysAuthorization];
             }
             [locationManager startUpdatingLocation];
+            [locationManager startMonitoringSignificantLocationChanges];
         }
     }
 }
@@ -117,16 +148,17 @@
 //停止后台定位
 -(void)stopLocation
 {
-    NSLog(@"停止定位");
+    customPushLog(@"停止定位");
     _isWorking = NO;
     CLLocationManager *locationManager = [DeathlessLocation shareBGLocation];
     [locationManager stopUpdatingLocation];
+    [locationManager stopMonitoringSignificantLocationChanges];
 }
 
 //重启定位服务
 -(void)restartLocation
 {
-    NSLog(@"重新启动定位");
+    customPushLog(@"重新启动定位");
     CLLocationManager *locationManager = [DeathlessLocation shareBGLocation];
     locationManager.delegate = self;
     locationManager.distanceFilter = kCLDistanceFilterNone; // 不移动也可以后台刷新回调
@@ -134,20 +166,24 @@
         [locationManager requestAlwaysAuthorization];
     }
     [locationManager startUpdatingLocation];
+    [locationManager startMonitoringSignificantLocationChanges];
     [self.bgTask beginNewBackgroundTask];
+    
+    [[BackgroundTask shareTask] updateBackgroundTask];
 }
 
 #pragma mark - delegate
 //定位回调里执行重启定位和关闭定位
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
+    [self sendNotifycation:[(CLLocation *)locations.firstObject coordinate]];
     NSLog(@"定位收集");
     //如果正在10秒定时收集的时间，不需要执行延时开启和关闭定位
     if (_isWorking)
     {
         return;
     }
-    [self performSelector:@selector(restartLocation) withObject:nil afterDelay:120];
+    [self performSelector:@selector(restartLocation) withObject:nil afterDelay:100];
     [self performSelector:@selector(stopLocation) withObject:nil afterDelay:10];
     _isWorking = YES;//标记正在定位
 }
@@ -178,6 +214,15 @@
         }
             break;
     }
+}
+
+
+- (void)sendNotifycation:(CLLocationCoordinate2D)coor
+{
+    NSString *title = [NSString stringWithFormat:@"WGS84 维度:%.6f, 经度:%.6f", coor.latitude, coor.longitude];
+    customPushLog(title);
+    
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"locationSuc" object:nil userInfo:@{@"message": [content.body stringByAppendingString:content.title]}];
 }
 
 @end

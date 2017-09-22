@@ -14,12 +14,12 @@
 #import <Cycript/Cycript.h>
 #import "FishConfigurationCenter.h"
 #import "TKToast.h"
-
+#import "FLEXManager.h"
 static __attribute__((constructor)) void entry(){
     NSLog(@"\n               🎉!!！congratulations!!！🎉\n👍----------------insert dylib success----------------👍");
     
     [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
-        
+        //[[FLEXManager sharedManager] showExplorer];
         CYListenServer(6666);
     }];
 }

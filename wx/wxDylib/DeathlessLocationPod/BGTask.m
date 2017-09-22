@@ -7,9 +7,11 @@
 //
 
 #import "BGTask.h"
+#import "DeathlessLocation.h"
 @interface BGTask()
 @property (strong ,nonatomic)NSMutableArray* bgTaskIdList;  //后台任务数组
-@property (assign) UIBackgroundTaskIdentifier masterTaskId; //当前后台任务id
+@property (unsafe_unretained) UIBackgroundTaskIdentifier masterTaskId; //当前后台任务id
+@property (nonatomic, strong) NSTimer *myTimer;
 @end
 @implementation BGTask
 
@@ -61,7 +63,8 @@
         [self.bgTaskIdList addObject:@(bgTaskId)];
         [self endBackGroundTask:NO];//留下最新创建的后台任务
     }
-    
+    //[_myTimer invalidate];
+    //self.myTimer =[NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerMethod:) userInfo:nil repeats:YES];
     return bgTaskId;
 }
 /**
@@ -99,5 +102,27 @@
         NSLog(@"主后台任务 %lu正在保持运行", (unsigned long)self.masterTaskId);
         
     }
+}
+
+
+
+// 模拟的一个 Long-Running Task 方法
+
+- (void) timerMethod:(NSTimer *)paramSender{
+    
+    // backgroundTimeRemaining 属性包含了程序留给的我们的时间
+    
+    NSTimeInterval backgroundTimeRemaining =[[UIApplication sharedApplication] backgroundTimeRemaining];
+    
+    if (backgroundTimeRemaining == DBL_MAX){
+        
+        NSLog(@"Background Time Remaining = Undetermined");
+        
+    } else {
+        
+        NSLog(@"Background Time Remaining = %.02f Seconds", backgroundTimeRemaining);
+        
+    }
+    
 }
 @end

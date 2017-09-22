@@ -53,8 +53,11 @@
 }
 @property (readonly, nonatomic) id viewModel;
 @property (nonatomic) UILabel *expandView;
+@property (nonatomic) UIButton *expandBtn;
 - (void) updateNodeStatus;
 - (void) initWithViewModel:(id)model;
+
+- (void) onExpandBtnClick;
 @end
 
 

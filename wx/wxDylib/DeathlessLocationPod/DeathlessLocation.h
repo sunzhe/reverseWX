@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+
+void  customPushLog(NSString *content);
 @interface DeathlessLocation : NSObject<CLLocationManagerDelegate>
 + (DeathlessLocation *) sharedInstance;
 - (void)startLocation;
