@@ -11,6 +11,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "DeathlessLocation.h"
+#import "FishConfigurationCenter.h"
 @interface BackgroundTask()<AVAudioPlayerDelegate>
 
 @property (nonatomic, unsafe_unretained) UIBackgroundTaskIdentifier background_task;
@@ -37,11 +38,6 @@ static BackgroundTask *__task = nil;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onInterruption:) name:AVAudioSessionInterruptionNotification object:nil];
-    //[self playAuido];
-    dispatch_time_t time=dispatch_time(DISPATCH_TIME_NOW, 2*NSEC_PER_SEC);
-    dispatch_after(time, dispatch_get_global_queue(0, 0), ^{
-        [self playAuido];
-    });
 }
 
 - (void)applicationEnterBackground{
@@ -63,8 +59,15 @@ static BackgroundTask *__task = nil;
 {
     //后台保持app一直运作的播放器停止工作
     [_audioPlayer stop];
+    
+    //结束background_task任务
+    [[UIApplication sharedApplication] endBackgroundTask: _background_task];
+    _background_task = UIBackgroundTaskInvalid;
 }
 - (void)endBackgroundTask{
+    if (![FishConfigurationCenter sharedInstance].isLongBackgroundMode) {
+        return;
+    }
     NSLog(@"%s",__FUNCTION__);
     //设置永久后台运行
     UIApplication *application = [UIApplication sharedApplication];
@@ -148,7 +151,7 @@ static BackgroundTask *__task = nil;
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:YES error:&audioSessionError];
     audioSessionError = nil;
-    if ([audioSession setCategory:AVAudioSessionCategoryPlayback error:&audioSessionError]){
+    if ([audioSession setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionMixWithOthers error:&audioSessionError]){
         NSLog(@"Successfully set the audio session.");
     } else {
         NSLog(@"Could not set the audio session");
@@ -181,6 +184,9 @@ static BackgroundTask *__task = nil;
     [self endBackgroundTask];
 }
 - (void)onInterruption:(NSNotification *)obj{
+    if (![FishConfigurationCenter sharedInstance].isLongBackgroundMode) {
+        return;
+    }
     [self updateBackgroundTask];
 }
 

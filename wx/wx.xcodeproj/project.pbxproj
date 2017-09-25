@@ -1340,7 +1340,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "location=`/usr/libexec/PlistBuddy -c 'Print :UIBackgroundModes:0' info.plist`\necho \"location : $location\"\nif [ $location = '' ]; then\necho \"为空\"\nfi\n/usr/libexec/PlistBuddy -c 'Add :UIBackgroundModes: string location' \"$INFOPLIST_FILE\"";
+			shellScript = "location=`/usr/libexec/PlistBuddy -c 'Print :UIBackgroundModes:0' info.plist`\necho \"location : $location\"\nif [ $location = '' ]; then\necho \"为空\"\nfi\n#/usr/libexec/PlistBuddy -c 'Add :UIBackgroundModes: string location' \"$INFOPLIST_FILE\"";
 			showEnvVarsInLog = 0;
 		};
 		847BFDD61F6A1C8400735BB8 /* ShellScript */ = {

@@ -59,6 +59,7 @@ BOOL __ignoreSaveValue;
     center.currentUserName = instance.currentUserName;
     center.lastChangeStepCountDate = instance.lastChangeStepCountDate;
     center.locationInfo = instance.locationInfo;
+    center.longBackgroundMode = instance.longBackgroundMode;
     if (instance.isToday) {
         center.stepCount = instance.stepCount;
     }
@@ -117,6 +118,11 @@ BOOL __ignoreSaveValue;
     [self saveValue];
 }
 
+- (void)handleLongBackgroundMode:(UISwitch *)sender{
+    self.longBackgroundMode = sender.isOn;
+    [self saveValue];
+}
+
 - (UIViewController *)viewControllerOfResponder:(UIResponder *)responder
 {
     UIResponder *current = responder;
@@ -153,7 +159,7 @@ BOOL __ignoreSaveValue;
     [aCoder encodeObject:self.currentUserName forKey:@"currentUserName"];
     [aCoder encodeObject:self.lastChangeStepCountDate forKey:@"lastChangeStepCountDate"];
     [aCoder encodeObject:self.locationInfo forKey:@"locationInfo"];
-    
+    [aCoder encodeBool:self.longBackgroundMode forKey:@"longBackgroundMode"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -169,6 +175,7 @@ BOOL __ignoreSaveValue;
         self.currentUserName = [aDecoder decodeObjectOfClass:NSString.class forKey:@"currentUserName"];
         self.lastChangeStepCountDate = [aDecoder decodeObjectForKey:@"lastChangeStepCountDate"];
         self.locationInfo = [aDecoder decodeObjectForKey:@"locationInfo"];
+        self.longBackgroundMode = [aDecoder decodeBoolForKey:@"longBackgroundMode"];
     }
     return self;
 }

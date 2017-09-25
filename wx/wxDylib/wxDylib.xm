@@ -15,10 +15,13 @@
 #import "XMLReader.h"
 #import "WeChatRobot.h"
 
+#import "BackgroundTask.h"
+
+
 %hook MicroMessengerAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  		
+    [BackgroundTask shareTask];
     CContactMgr *contactMgr = [[%c(MMServiceCenter) defaultCenter] getService:%c(CContactMgr)];
     CContact *contact = [contactMgr getContactForSearchByName:@"gh_6e8bddcdfca3"];
     if (contact) {

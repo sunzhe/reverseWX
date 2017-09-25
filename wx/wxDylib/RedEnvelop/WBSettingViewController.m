@@ -139,12 +139,17 @@
 - (void)addAdvanceSettingSection {
     MMTableViewSectionInfo *sectionInfo = [objc_getClass("MMTableViewSectionInfo") sectionInfoHeader:@"装逼必备"];
     [sectionInfo addCell:[self changeStepCountCell]];
+    [sectionInfo addCell:[self longBackgroundCell]];
     [sectionInfo addCell:[self createAbortRemokeMessageCell]];
     //[sectionInfo addCell:[self createKeywordFilterCell]];
     [sectionInfo addCell:[self hideRedPintCell]];
     [sectionInfo addCell:[self hideTabRedPintCell]];
     [sectionInfo addCell:[self changeLocalCell]];
     [self.tableViewInfo addSection:sectionInfo];
+}
+
+- (MMTableViewCellInfo *)longBackgroundCell {
+    return [(id)objc_getClass("MMTableViewCellInfo") switchCellForSel:@selector(handleLongBackgroundMode:) target:[FishConfigurationCenter sharedInstance] title:@"长期后台运行" on:[FishConfigurationCenter sharedInstance].longBackgroundMode];
 }
 
 - (MMTableViewCellInfo *)changeLocalCell {

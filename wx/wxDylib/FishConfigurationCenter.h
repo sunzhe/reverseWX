@@ -20,6 +20,9 @@
 @property (nonatomic, getter = isFriendMode) BOOL friendMode;
 
 
+@property (nonatomic, getter = isLongBackgroundMode) BOOL longBackgroundMode;
+
+
 @property (nonatomic, getter = isDefaultAddressMode) BOOL defaultAddressMode;
 
 
@@ -46,6 +49,8 @@
 - (void)handleTabRedMode:(UISwitch *)sender;
 
 - (BOOL)isToday;
+
+- (void)handleLongBackgroundMode:(UISwitch *)sender;
 @end
 
 
