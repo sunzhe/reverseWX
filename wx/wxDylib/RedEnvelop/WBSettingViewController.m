@@ -14,6 +14,8 @@
 #import "FishConfigurationCenter.h"
 #import "MapView.h"
 #import "TKSettingViewController.h"
+
+#import "FLEXManager.h"
 @interface WBSettingViewController () <MultiSelectGroupsViewControllerDelegate>
 
 @property (nonatomic, strong) MMTableViewInfo *tableViewInfo;
@@ -31,12 +33,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    MMTableView *tableView = [self.tableViewInfo getTableView];
+    //*
+    CGRect rect = self.view.bounds;
+    rect.origin.y = 64;
+    rect.size.height -= rect.origin.y;
+    tableView.frame = rect;
+     //*/
+    [self.view addSubview:tableView];
+    
     
     [self initTitle];
     [self reloadTableData];
     
-    MMTableView *tableView = [self.tableViewInfo getTableView];
-    [self.view addSubview:tableView];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -172,7 +181,7 @@
 
 - (MMTableViewCellInfo *)changeStepCountCell{
     NSInteger stepCount = [FishConfigurationCenter sharedInstance].stepCount;
-    return [objc_getClass("MMTableViewCellInfo") editorCellForSel:@selector(handleStepCount:) target:[FishConfigurationCenter sharedInstance] title:@"微信运动步数" margin:300.0 tip:@"请输入步数" focus:NO text:[NSString stringWithFormat:@"%ld", stepCount]];
+    return [objc_getClass("MMTableViewCellInfo") editorCellForSel:@selector(handleStepCount:) target:[FishConfigurationCenter sharedInstance] title:@"微信运动步数" margin:300.0 tip:@"请输入步数" focus:NO text:[NSString stringWithFormat:@"%zi", stepCount]];
 }
 
 - (MMTableViewCellInfo *)createReceiveSelfRedEnvelopCell {
@@ -292,9 +301,14 @@
     MMTableViewSectionInfo *sectionInfo = [objc_getClass("MMTableViewSectionInfo") sectionInfoDefaut];
     
     [sectionInfo addCell:[self createMoreSettingCell]];
+    [sectionInfo addCell:[self createFlexCell]];
     [sectionInfo addCell:[self createWeChatPayingCell]];
     
     [self.tableViewInfo addSection:sectionInfo];
+}
+
+- (MMTableViewCellInfo *)createFlexCell {
+    return [objc_getClass("MMTableViewCellInfo") switchCellForSel:@selector(settingFLEX:) target:self title:@"开启FLEX" on:NO];
 }
 
 - (MMTableViewCellInfo *)createMoreSettingCell {
@@ -303,8 +317,16 @@
 - (MMTableViewCellInfo *)createWeChatPayingCell {
     return [objc_getClass("MMTableViewCellInfo") normalCellForSel:@selector(payingToAuthor) target:self title:@"支持作者" rightValue:@"打赏开发" accessoryType:1];
 }
+- (void)settingFLEX:(UISwitch *)envelopSwitch{
+    if (envelopSwitch.isOn) {
+        [[FLEXManager sharedManager] showExplorer];
+    }else {
+        [[FLEXManager sharedManager] hideExplorer];
+    }
+}
+
 - (void)moreSetting{
-    TKSettingViewController *more = [[TKSettingViewController alloc] init];
+    TKSettingViewController *more = [[objc_getClass("TKSettingViewController") alloc] init];
     [self.navigationController PushViewController:more animated:YES];
 }
 - (void)payingToAuthor {

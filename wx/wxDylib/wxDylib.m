@@ -14,7 +14,6 @@
 #import <Cycript/Cycript.h>
 #import "FishConfigurationCenter.h"
 #import "TKToast.h"
-#import "FLEXManager.h"
 static __attribute__((constructor)) void entry(){
     NSLog(@"\n               🎉!!！congratulations!!！🎉\n👍----------------insert dylib success----------------👍");
     

@@ -88,6 +88,12 @@
     [self.selectView initData:5];
     [self.selectView initView];
     
+    //*
+    CGRect rect = self.view.bounds;
+    rect.origin.y = 64;
+    rect.size.height -= rect.origin.y;
+    _selectView.frame = rect;
+    //*/
     [self.view addSubview:self.selectView];
 }
 

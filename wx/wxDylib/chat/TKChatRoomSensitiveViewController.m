@@ -28,12 +28,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self initData];
     [self reloadTableData];
     [self initTitle];
+    
     MMTableView *tableView = [self.tableViewInfo getTableView];
-
+    //*
+    CGRect rect = self.view.bounds;
+    rect.origin.y = 64;
+    rect.size.height -= rect.origin.y;
+    tableView.frame = rect;
+    //*/
     [self.view addSubview:tableView];
 }
 

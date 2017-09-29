@@ -54,7 +54,7 @@
     });
 
     self.selectView = ({
-        CGRect frame =  CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 45);
+        CGRect frame =  CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 45 - 64);
         ContactSelectView *selectV = [[objc_getClass("ContactSelectView") alloc] initWithFrame:frame];
         [selectV setM_uiGroupScene:5];
         [selectV setM_bMultiSelect:1];
