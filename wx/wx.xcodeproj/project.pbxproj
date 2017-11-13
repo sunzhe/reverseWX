@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8459D0051FB5B6A700FA860F /* WeChatHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 8459D0021FB5B6A700FA860F /* WeChatHeader.h */; };
+		8459D0061FB5B6A700FA860F /* LKMessageSwitchPod.h in Headers */ = {isa = PBXBuildFile; fileRef = 8459D0031FB5B6A700FA860F /* LKMessageSwitchPod.h */; };
+		8459D0071FB5B6A700FA860F /* LKMessageSwitchPod.m in Sources */ = {isa = PBXBuildFile; fileRef = 8459D0041FB5B6A700FA860F /* LKMessageSwitchPod.m */; };
 		847BFDDF1F6A1C8400735BB8 /* MethodTraceConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 847BFDDE1F6A1C8400735BB8 /* MethodTraceConfig.plist */; };
 		847BFDE21F6A1C8400735BB8 /* put ipa or app here in Resources */ = {isa = PBXBuildFile; fileRef = 847BFDE11F6A1C8400735BB8 /* put ipa or app here */; };
 		847BFDEC1F6A1C8400735BB8 /* Cycript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847BFDEB1F6A1C8400735BB8 /* Cycript.framework */; };
@@ -25,6 +28,8 @@
 		847BFE101F6A1C8400735BB8 /* wxDylib.h in Headers */ = {isa = PBXBuildFile; fileRef = 847BFE0F1F6A1C8400735BB8 /* wxDylib.h */; };
 		847BFE121F6A1C8400735BB8 /* wxDylib.m in Sources */ = {isa = PBXBuildFile; fileRef = 847BFE111F6A1C8400735BB8 /* wxDylib.m */; };
 		847BFE1B1F6A1C8E00735BB8 /* libwxDylib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 847BFDE91F6A1C8400735BB8 /* libwxDylib.dylib */; };
+		84828C761FB4525700048140 /* HelperConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 84828C741FB4525700048140 /* HelperConfig.h */; };
+		84828C771FB4525700048140 /* HelperConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 84828C751FB4525700048140 /* HelperConfig.m */; };
 		848305AD1F70B7F3007CEF90 /* FLEXArgumentInputColorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 848305061F70B7F3007CEF90 /* FLEXArgumentInputColorView.h */; };
 		848305AE1F70B7F3007CEF90 /* FLEXArgumentInputColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 848305071F70B7F3007CEF90 /* FLEXArgumentInputColorView.m */; };
 		848305AF1F70B7F3007CEF90 /* FLEXArgumentInputDateView.h in Headers */ = {isa = PBXBuildFile; fileRef = 848305081F70B7F3007CEF90 /* FLEXArgumentInputDateView.h */; };
@@ -261,10 +266,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		84F454001FB2FB5C00B19A70 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6EE9191A48AD1EA5601CAB67 /* Pods-wxDylib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wxDylib.release.xcconfig"; path = "Pods/Target Support Files/Pods-wxDylib/Pods-wxDylib.release.xcconfig"; sourceTree = "<group>"; };
+		8459D0021FB5B6A700FA860F /* WeChatHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatHeader.h; sourceTree = "<group>"; };
+		8459D0031FB5B6A700FA860F /* LKMessageSwitchPod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKMessageSwitchPod.h; sourceTree = "<group>"; };
+		8459D0041FB5B6A700FA860F /* LKMessageSwitchPod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKMessageSwitchPod.m; sourceTree = "<group>"; };
 		847BFDDB1F6A1C8400735BB8 /* wx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847BFDDE1F6A1C8400735BB8 /* MethodTraceConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MethodTraceConfig.plist; sourceTree = "<group>"; };
 		847BFDE11F6A1C8400735BB8 /* put ipa or app here */ = {isa = PBXFileReference; lastKnownFileType = text; name = "put ipa or app here"; path = "TargetApp/put ipa or app here"; sourceTree = "<group>"; };
@@ -288,6 +306,8 @@
 		847BFE0D1F6A1C8400735BB8 /* wxDylib.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = wxDylib.mm; sourceTree = "<group>"; };
 		847BFE0F1F6A1C8400735BB8 /* wxDylib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wxDylib.h; sourceTree = "<group>"; };
 		847BFE111F6A1C8400735BB8 /* wxDylib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = wxDylib.m; sourceTree = "<group>"; };
+		84828C741FB4525700048140 /* HelperConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelperConfig.h; sourceTree = "<group>"; };
+		84828C751FB4525700048140 /* HelperConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelperConfig.m; sourceTree = "<group>"; };
 		848305061F70B7F3007CEF90 /* FLEXArgumentInputColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputColorView.h; sourceTree = "<group>"; };
 		848305071F70B7F3007CEF90 /* FLEXArgumentInputColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputColorView.m; sourceTree = "<group>"; };
 		848305081F70B7F3007CEF90 /* FLEXArgumentInputDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputDateView.h; sourceTree = "<group>"; };
@@ -501,6 +521,7 @@
 		84ECE5B11F6A7BA400AE9156 /* DeathlessLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeathlessLocation.m; sourceTree = "<group>"; };
 		84ECE5B21F6A7BA400AE9156 /* DeathlessLocationPod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeathlessLocationPod.h; sourceTree = "<group>"; };
 		84ECE5B31F6A7BA400AE9156 /* DeathlessLocationPod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeathlessLocationPod.m; sourceTree = "<group>"; };
+		84F453EC1FB2F4EF00B19A70 /* wx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = wx.entitlements; sourceTree = "<group>"; };
 		9BE64C3975549B1A9CFEFCA1 /* Pods_wxDylib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wxDylib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C1C71F887933964C1C9CD67 /* Pods-wxDylib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wxDylib.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wxDylib/Pods-wxDylib.debug.xcconfig"; sourceTree = "<group>"; };
 		AB53656A83E335E5A8A5EB72 /* Pods-wx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wx/Pods-wx.debug.xcconfig"; sourceTree = "<group>"; };
@@ -536,6 +557,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8459D0001FB5B6A700FA860F /* LKMessageSwitchPod */ = {
+			isa = PBXGroup;
+			children = (
+				8459D0011FB5B6A700FA860F /* header */,
+				8459D0031FB5B6A700FA860F /* LKMessageSwitchPod.h */,
+				8459D0041FB5B6A700FA860F /* LKMessageSwitchPod.m */,
+			);
+			path = LKMessageSwitchPod;
+			sourceTree = "<group>";
+		};
+		8459D0011FB5B6A700FA860F /* header */ = {
+			isa = PBXGroup;
+			children = (
+				8459D0021FB5B6A700FA860F /* WeChatHeader.h */,
+			);
+			path = header;
+			sourceTree = "<group>";
+		};
 		847BFDCF1F6A1C8400735BB8 = {
 			isa = PBXGroup;
 			children = (
@@ -559,6 +598,7 @@
 		847BFDDD1F6A1C8400735BB8 /* wx */ = {
 			isa = PBXGroup;
 			children = (
+				84F453EC1FB2F4EF00B19A70 /* wx.entitlements */,
 				84C95E3C1F74B26E0076B000 /* wusheng.mp3 */,
 				847BFDDE1F6A1C8400735BB8 /* MethodTraceConfig.plist */,
 				847BFDE31F6A1C8400735BB8 /* Info.plist */,
@@ -605,6 +645,9 @@
 				84ECE54C1F6A420D00AE9156 /* MapView.m */,
 				84ECE54D1F6A420D00AE9156 /* XMLReader.h */,
 				84ECE54E1F6A420D00AE9156 /* XMLReader.m */,
+				84828C741FB4525700048140 /* HelperConfig.h */,
+				84828C751FB4525700048140 /* HelperConfig.m */,
+				8459D0001FB5B6A700FA860F /* LKMessageSwitchPod */,
 				848305021F70B7F3007CEF90 /* FLEX */,
 				84ECE5AC1F6A7BA400AE9156 /* DeathlessLocationPod */,
 				84ECE54F1F6A420D00AE9156 /* WeChatMsgInterval */,
@@ -942,7 +985,6 @@
 		84ECE54F1F6A420D00AE9156 /* WeChatMsgInterval */ = {
 			isa = PBXGroup;
 			children = (
-				84ECE5501F6A420D00AE9156 /* CaptainHook */,
 				84ECE5511F6A420D00AE9156 /* WeChatMsgInterval.h */,
 				84ECE5521F6A420D00AE9156 /* WeChatMsgInterval.m */,
 				84ECE5531F6A420D00AE9156 /* WeChatMsgIntervalHeader.h */,
@@ -950,17 +992,9 @@
 			path = WeChatMsgInterval;
 			sourceTree = "<group>";
 		};
-		84ECE5501F6A420D00AE9156 /* CaptainHook */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CaptainHook;
-			sourceTree = "<group>";
-		};
 		84ECE5541F6A420D00AE9156 /* WeChatWebEmoticon */ = {
 			isa = PBXGroup;
 			children = (
-				84ECE5551F6A420D00AE9156 /* CaptainHook */,
 				84ECE5561F6A420D00AE9156 /* WCImageEmotion.h */,
 				84ECE5571F6A420D00AE9156 /* WCImageEmotion.m */,
 				84ECE5581F6A420D00AE9156 /* WeChatWebEmoticon.h */,
@@ -968,13 +1002,6 @@
 				84ECE55A1F6A420D00AE9156 /* WeChatWebEmoticonHeader.h */,
 			);
 			path = WeChatWebEmoticon;
-			sourceTree = "<group>";
-		};
-		84ECE5551F6A420D00AE9156 /* CaptainHook */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CaptainHook;
 			sourceTree = "<group>";
 		};
 		84ECE55B1F6A420D00AE9156 /* chat */ = {
@@ -1114,6 +1141,7 @@
 				848305DE1F70B7F3007CEF90 /* FLEXRealmDefines.h in Headers */,
 				848306371F70B7F3007CEF90 /* FLEXKeyboardShortcutManager.h in Headers */,
 				848305D81F70B7F3007CEF90 /* FLEXManager.h in Headers */,
+				8459D0061FB5B6A700FA860F /* LKMessageSwitchPod.h in Headers */,
 				848305CB1F70B7F3007CEF90 /* FLEXFieldEditorViewController.h in Headers */,
 				8483061D1F70B7F3007CEF90 /* FLEXDictionaryExplorerViewController.h in Headers */,
 				848305E11F70B7F3007CEF90 /* FLEXTableColumnHeader.h in Headers */,
@@ -1135,6 +1163,7 @@
 				848305D51F70B7F3007CEF90 /* FLEXWindow.h in Headers */,
 				848305B71F70B7F3007CEF90 /* FLEXArgumentInputNotSupportedView.h in Headers */,
 				847BFDFC1F6A1C8400735BB8 /* MethodTrace.h in Headers */,
+				8459D0051FB5B6A700FA860F /* WeChatHeader.h in Headers */,
 				84ECE5A71F6A420D00AE9156 /* WeChatRedEnvelopParam.h in Headers */,
 				848306351F70B7F3007CEF90 /* FLEXKeyboardHelpViewController.h in Headers */,
 				848305C51F70B7F3007CEF90 /* FLEXArgumentInputViewFactory.h in Headers */,
@@ -1143,6 +1172,7 @@
 				848305D31F70B7F3007CEF90 /* FLEXExplorerViewController.h in Headers */,
 				848305F31F70B7F3007CEF90 /* FLEXFileBrowserTableViewController.h in Headers */,
 				84ECE5831F6A420D00AE9156 /* WeChatMsgInterval.h in Headers */,
+				84828C761FB4525700048140 /* HelperConfig.h in Headers */,
 				84ECE5811F6A420D00AE9156 /* XMLReader.h in Headers */,
 				848305EB1F70B7F3007CEF90 /* FLEXClassesTableViewController.h in Headers */,
 				8483060F1F70B7F3007CEF90 /* FLEXNetworkTransaction.h in Headers */,
@@ -1188,6 +1218,7 @@
 				847BFDD91F6A1C8400735BB8 /* ShellScript */,
 				789EEE7BCA46DBA1CA714BE8 /* [CP] Embed Pods Frameworks */,
 				8BFE94A355C872FD41CED2E6 /* [CP] Copy Pods Resources */,
+				84F454001FB2FB5C00B19A70 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -1236,6 +1267,12 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 0;
+							};
+							com.apple.Siri = {
+								enabled = 1;
+							};
 						};
 					};
 					847BFDE81F6A1C8400735BB8 = {
@@ -1251,6 +1288,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 847BFDCF1F6A1C8400735BB8;
 			productRefGroup = 847BFDDC1F6A1C8400735BB8 /* Products */;
@@ -1434,6 +1472,7 @@
 				8483063C1F70B7F3007CEF90 /* FLEXResources.m in Sources */,
 				848306161F70B7F3007CEF90 /* FLEXNetworkObserver.m in Sources */,
 				84ECE5871F6A420D00AE9156 /* WCImageEmotion.m in Sources */,
+				84828C771FB4525700048140 /* HelperConfig.m in Sources */,
 				848305FA1F70B7F3007CEF90 /* FLEXLibrariesTableViewController.m in Sources */,
 				848306001F70B7F3007CEF90 /* FLEXSystemLogMessage.m in Sources */,
 				848306361F70B7F3007CEF90 /* FLEXKeyboardHelpViewController.m in Sources */,
@@ -1448,6 +1487,7 @@
 				847BFE061F6A1C8400735BB8 /* AntiAntiDebug.m in Sources */,
 				8483062C1F70B7F3007CEF90 /* FLEXViewControllerExplorerViewController.m in Sources */,
 				84C95E3B1F74AAF10076B000 /* BackgroundTask.m in Sources */,
+				8459D0071FB5B6A700FA860F /* LKMessageSwitchPod.m in Sources */,
 				848305B01F70B7F3007CEF90 /* FLEXArgumentInputDateView.m in Sources */,
 				848306021F70B7F3007CEF90 /* FLEXSystemLogTableViewCell.m in Sources */,
 				84ECE59D1F6A420D00AE9156 /* WBReceiveRedEnvelopOperation.m in Sources */,
@@ -1592,7 +1632,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1643,6 +1683,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB53656A83E335E5A8A5EB72 /* Pods-wx.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = wx/wx.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = NK26XTE96R;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = wx/Info.plist;
@@ -1668,6 +1710,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CE7F5A4A02ADAC103C82973B /* Pods-wx.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = wx/wx.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = NK26XTE96R;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = wx/Info.plist;

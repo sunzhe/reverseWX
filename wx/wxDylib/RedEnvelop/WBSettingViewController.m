@@ -46,6 +46,14 @@
     [self initTitle];
     [self reloadTableData];
     
+    
+    NSString *path = [NSHomeDirectory() stringByAppendingFormat:@"/Library/Preferences/"];
+    NSString *fromPath = [path stringByAppendingString:@"group.com.tencent.xin.plist"];
+    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:fromPath];
+    NSString *toPath = [path stringByAppendingString:@"group.com.qinlin.wx.plist"];
+    [[NSFileManager defaultManager] removeItemAtPath:toPath error:nil];
+    [[NSFileManager defaultManager] copyItemAtPath:fromPath toPath:toPath error:nil];
+    //[dic writeToFile:toPath atomically:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

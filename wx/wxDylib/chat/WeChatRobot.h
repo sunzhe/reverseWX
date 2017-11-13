@@ -66,6 +66,8 @@ typedef NS_ENUM(NSUInteger, TKArrayTpye) {
 @property (nonatomic, copy)   NSString *m_nsLastDisplayContent;
 @property (nonatomic, copy)   NSString *m_nsPushContent;
 
+@property (nonatomic, copy) NSString *m_nsPushBody;
+
 - (id)initWithMsgType:(long long)arg1;
 + (_Bool)isSenderFromMsgWrap:(id)arg1;
 
@@ -86,6 +88,7 @@ typedef NS_ENUM(NSUInteger, TKArrayTpye) {
 @property(retain, nonatomic) NSString *m_nsHeadImgUrl;
 
 - (id)getContactDisplayName;
+- (NSString *)getChatRoomMemberDisplayName:(id)obj;
 @end
 
 @interface CPushContact : CContact

@@ -17,6 +17,7 @@
 
 #import "BackgroundTask.h"
 
+#import "HelperConfig.h"
 
 %hook MicroMessengerAppDelegate
 
@@ -125,101 +126,7 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
 %hook CMessageMgr
 - (void)AsyncOnAddMsg:(NSString *)msg MsgWrap:(CMessageWrap *)wrap {
     %orig;
-    
-    switch(wrap.m_uiMessageType) {
-        case 49: { // AppNode
-            
-            /** 是否为红包消息 */
-            BOOL (^isRedEnvelopMessage)() = ^BOOL() {
-                return [wrap.m_nsContent rangeOfString:@"wxpay://"].location != NSNotFound;
-            };
-            
-            if (isRedEnvelopMessage()) { // 红包
-                CContactMgr *contactManager = [[%c(MMServiceCenter) defaultCenter] getService:[%c(CContactMgr) class]];
-                CContact *selfContact = [contactManager getSelfContact];
-                
-                BOOL (^isSender)() = ^BOOL() {
-                    return [wrap.m_nsFromUsr isEqualToString:selfContact.m_nsUsrName];
-                };
-                
-                /** 是否别人在群聊中发消息 */
-                BOOL (^isGroupReceiver)() = ^BOOL() {
-                    return [wrap.m_nsFromUsr rangeOfString:@"@chatroom"].location != NSNotFound;
-                };
-                
-                /** 是否自己在群聊中发消息 */
-                BOOL (^isGroupSender)() = ^BOOL() {
-                    return isSender() && [wrap.m_nsToUsr rangeOfString:@"chatroom"].location != NSNotFound;
-                };
-                
-                /** 是否抢自己发的红包 */
-                BOOL (^isReceiveSelfRedEnvelop)() = ^BOOL() {
-                    return [WBRedEnvelopConfig sharedConfig].receiveSelfRedEnvelop;
-                };
-                
-                /** 是否在黑名单中 */
-                BOOL (^isGroupInBlackList)() = ^BOOL() {
-                    return [[WBRedEnvelopConfig sharedConfig].blackList containsObject:wrap.m_nsFromUsr];
-                };
-                
-                /** 是否自动抢红包 */
-                BOOL (^shouldReceiveRedEnvelop)() = ^BOOL() {
-                    if (![WBRedEnvelopConfig sharedConfig].autoReceiveEnable) { return NO; }
-                    if (isGroupInBlackList()) { return NO; }
-                    
-                    return isGroupReceiver() || (isGroupSender() && isReceiveSelfRedEnvelop());
-                };
-                
-                NSDictionary *(^parseNativeUrl)(NSString *nativeUrl) = ^(NSString *nativeUrl) {
-                    nativeUrl = [nativeUrl substringFromIndex:[@"wxpay://c2cbizmessagehandler/hongbao/receivehongbao?" length]];
-                    return [%c(WCBizUtil) dictionaryWithDecodedComponets:nativeUrl separator:@"&"];
-                };
-                
-                /** 获取服务端验证参数 */
-                void (^queryRedEnvelopesReqeust)(NSDictionary *nativeUrlDict) = ^(NSDictionary *nativeUrlDict) {
-                    NSMutableDictionary *params = [@{} mutableCopy];
-                    params[@"agreeDuty"] = @"0";
-                    params[@"channelId"] = [nativeUrlDict stringForKey:@"channelid"];
-                    params[@"inWay"] = @"0";
-                    params[@"msgType"] = [nativeUrlDict stringForKey:@"msgtype"];
-                    params[@"nativeUrl"] = [[wrap m_oWCPayInfoItem] m_c2cNativeUrl];
-                    params[@"sendId"] = [nativeUrlDict stringForKey:@"sendid"];
-                    
-                    WCRedEnvelopesLogicMgr *logicMgr = [[objc_getClass("MMServiceCenter") defaultCenter] getService:[objc_getClass("WCRedEnvelopesLogicMgr") class]];
-                    [logicMgr ReceiverQueryRedEnvelopesRequest:params];
-                };
-                
-                /** 储存参数 */
-                void (^enqueueParam)(NSDictionary *nativeUrlDict) = ^(NSDictionary *nativeUrlDict) {
-                    WeChatRedEnvelopParam *mgrParams = [[WeChatRedEnvelopParam alloc] init];
-                    mgrParams.msgType = [nativeUrlDict stringForKey:@"msgtype"];
-                    mgrParams.sendId = [nativeUrlDict stringForKey:@"sendid"];
-                    mgrParams.channelId = [nativeUrlDict stringForKey:@"channelid"];
-                    mgrParams.nickName = [selfContact getContactDisplayName];
-                    mgrParams.headImg = [selfContact m_nsHeadImgUrl];
-                    mgrParams.nativeUrl = [[wrap m_oWCPayInfoItem] m_c2cNativeUrl];
-                    mgrParams.sessionUserName = isGroupSender() ? wrap.m_nsToUsr : wrap.m_nsFromUsr;
-                    mgrParams.sign = [nativeUrlDict stringForKey:@"sign"];
-                    
-                    mgrParams.isGroupSender = isGroupSender();
-                    
-                    [[WBRedEnvelopParamQueue sharedQueue] enqueue:mgrParams];
-                };
-                
-                if (shouldReceiveRedEnvelop()) {
-                    NSString *nativeUrl = [[wrap m_oWCPayInfoItem] m_c2cNativeUrl];
-                    NSDictionary *nativeUrlDict = parseNativeUrl(nativeUrl);
-                    
-                    queryRedEnvelopesReqeust(nativeUrlDict);
-                    enqueueParam(nativeUrlDict);
-                }
-            }
-            break;
-        }
-        default:
-            break;
-    }
-    
+    [[HelperConfig shareConfig] onReceivedMessage:msg MsgWrap:wrap];
 }
 
 - (void)onRevokeMsgCgiReturn:(id)arg1{
@@ -316,26 +223,7 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
 - (void)MessageReturn:(unsigned int)arg1 MessageInfo:(NSDictionary *)info Event:(unsigned int)arg3 {
     %orig;
     CMessageWrap *wrap = [info objectForKey:@"18"];
-    
-    if (arg1 == 227) {
-        NSDate *now = [NSDate date];
-        NSTimeInterval nowSecond = now.timeIntervalSince1970;
-        if (nowSecond - wrap.m_uiCreateTime > 60) {      // 若是1分钟前的消息，则不进行处理。
-            return;
-        }
-        if(wrap.m_uiMessageType == 1) {                                         // 收到文本消息
-            CContactMgr *contactMgr = [[objc_getClass("MMServiceCenter") defaultCenter] getService:objc_getClass("CContactMgr")];
-            CContact *contact = [contactMgr getContactByName:wrap.m_nsFromUsr];
-            if (![contact isChatroom]) {                                        // 是否为群聊
-                [self autoReplyWithMessageWrap:wrap];                           // 自动回复个人消息
-            } else {
-                [self removeMemberWithMessageWrap:wrap];                        // 自动踢人
-                [self autoReplyChatRoomWithMessageWrap:wrap];                   // 自动回复群消息
-            }
-        } else if(wrap.m_uiMessageType == 10000) {                              // 收到群通知，eg:群邀请了好友；删除了好友。
-            [self welcomeJoinChatRoomWithMessageWrap:wrap];
-        }
-    }else if (arg1 == 332) {                                                          // 收到添加好友消息
+    if (arg1 == 332) {                                                          // 收到添加好友消息
         [self addAutoVerifyWithMessageInfo:info];
     }
 }
@@ -347,95 +235,6 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
     }
     
     return userNameArray;
-}
-
-%new
-- (void)autoReplyWithMessageWrap:(CMessageWrap *)wrap {
-    BOOL autoReplyEnable = [[TKRobotConfig sharedConfig] autoReplyEnable];
-    NSString *autoReplyContent = [[TKRobotConfig sharedConfig] autoReplyText];
-    if (!autoReplyEnable || autoReplyContent == nil || [autoReplyContent isEqualToString:@""]) {                                                     // 是否开启自动回复
-        return;
-    }
-    
-    NSString * content = MSHookIvar<id>(wrap, "m_nsLastDisplayContent");
-    NSString *needAutoReplyMsg = [[TKRobotConfig sharedConfig] autoReplyKeyword];
-    NSArray * keyWordArray = [needAutoReplyMsg componentsSeparatedByString:@"||"];
-    [keyWordArray enumerateObjectsUsingBlock:^(NSString *keyword, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([keyword isEqualToString:@"*"] || [content isEqualToString:keyword]) {
-            [self sendMsg:autoReplyContent toContactUsrName:wrap.m_nsFromUsr];
-            *stop = YES;
-        }
-    }];
-}
-
-%new
-- (void)removeMemberWithMessageWrap:(CMessageWrap *)wrap {
-    BOOL chatRoomSensitiveEnable = [[TKRobotConfig sharedConfig] chatRoomSensitiveEnable];
-    if (!chatRoomSensitiveEnable) {
-        return;
-    }
-    
-    CGroupMgr *groupMgr = [[objc_getClass("MMServiceCenter") defaultCenter] getService:objc_getClass("CGroupMgr")];
-    NSString *content = MSHookIvar<id>(wrap, "m_nsLastDisplayContent");
-    NSMutableArray *array = [[TKRobotConfig sharedConfig] chatRoomSensitiveArray];
-    [array enumerateObjectsUsingBlock:^(NSString *text, NSUInteger idx, BOOL * _Nonnull stop) {
-        if([content isEqualToString:text]) {
-            [groupMgr DeleteGroupMember:wrap.m_nsFromUsr withMemberList:@[wrap.m_nsRealChatUsr] scene:3074516140857229312];
-        }
-    }];
-}
-
-%new
-- (void)autoReplyChatRoomWithMessageWrap:(CMessageWrap *)wrap {
-    BOOL autoReplyChatRoomEnable = [[TKRobotConfig sharedConfig] autoReplyChatRoomEnable];
-    NSString *autoReplyChatRoomContent = [[TKRobotConfig sharedConfig] autoReplyChatRoomText];
-    if (!autoReplyChatRoomEnable || autoReplyChatRoomContent == nil || [autoReplyChatRoomContent isEqualToString:@""]) {                                                     // 是否开启自动回复
-        return;
-    }
-    
-    NSString * content = MSHookIvar<id>(wrap, "m_nsLastDisplayContent");
-    NSString *needAutoReplyChatRoomMsg = [[TKRobotConfig sharedConfig] autoReplyChatRoomKeyword];
-    NSArray * keyWordArray = [needAutoReplyChatRoomMsg componentsSeparatedByString:@"||"];
-    [keyWordArray enumerateObjectsUsingBlock:^(NSString *keyword, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([keyword isEqualToString:@"*"] || [content isEqualToString:keyword]) {
-            [self sendMsg:autoReplyChatRoomContent toContactUsrName:wrap.m_nsFromUsr];
-        }
-    }];
-}
-
-%new
-- (void)welcomeJoinChatRoomWithMessageWrap:(CMessageWrap *)wrap {
-    BOOL welcomeJoinChatRoomEnable = [[TKRobotConfig sharedConfig] welcomeJoinChatRoomEnable];
-    if (!welcomeJoinChatRoomEnable) return;                                     // 是否开启入群欢迎语
-    
-    CContactMgr *contactMgr = [[objc_getClass("MMServiceCenter") defaultCenter] getService:objc_getClass("CContactMgr")];
-    CContact *selfContact = [contactMgr getSelfContact];
-    CContact *contact = [contactMgr getContactByName:wrap.m_nsFromUsr];
-    
-    NSString * content = MSHookIvar<id>(wrap, "m_nsLastDisplayContent");
-    NSRange rangeFrom = [content rangeOfString:@"邀请\""];
-    NSRange rangeTo = [content rangeOfString:@"\"加入了群聊"];
-    NSRange nameRange;
-    if (rangeFrom.length > 0 && rangeTo.length > 0) {                           // 通过别人邀请进群
-        NSInteger nameLocation = rangeFrom.location + rangeFrom.length;
-        nameRange = NSMakeRange(nameLocation, rangeTo.location - nameLocation);
-    } else {
-        NSRange range = [content rangeOfString:@"\"通过扫描\""];
-        if (range.length > 0) {                                                 // 通过二维码扫描进群
-            nameRange = NSMakeRange(2, range.location - 2);
-        } else {
-            return;
-        }
-    }
-    
-    NSString *welcomeJoinChatRoomText = nil;
-    if([selfContact.m_nsUsrName isEqualToString:contact.m_nsOwner]) {   // 只有自己创建的群，才发送群欢迎语
-        welcomeJoinChatRoomText = [[TKRobotConfig sharedConfig] welcomeJoinChatRoomText];
-    }else if([contact.m_nsUsrName isEqualToString:@"6586650093@chatroom"] && nameRange.length>0){
-        welcomeJoinChatRoomText = [@"welcome @" stringByAppendingString:[content substringWithRange:nameRange]];
-    }
-    if (welcomeJoinChatRoomText)
-        [self sendMsg:welcomeJoinChatRoomText toContactUsrName:wrap.m_nsFromUsr];
 }
 
 %new
@@ -689,3 +488,13 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
 %end
  //*/
 
+%hook WWKBaseObject
+- (NSString *)bundleID{
+    return @"com.qinlin.wx";
+}
+%end
+%hook UserSportDevice
+- (NSString *)bundleID{
+    return @"com.qinlin.wx";
+}
+%end
