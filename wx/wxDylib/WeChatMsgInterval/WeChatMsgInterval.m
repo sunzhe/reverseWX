@@ -12,7 +12,8 @@
 #import "CaptainHook.h"
 #import <UIKit/UIKit.h>
 #import "WeChatMsgIntervalHeader.h"
-
+#import "HelperConfig.h"
+#import "WeChatHeader.h"
 
 CHDeclareClass(BaseChatViewModel)
 CHPropertyRetainNonatomic(BaseChatViewModel, NSString *, intervaleTime, setIntervaleTime);
@@ -36,7 +37,12 @@ CHOptimizedMethod(1, self,id,CommonMessageCellView,initWithViewModel,BaseChatVie
 }
 
 CHMethod0(void, CommonMessageCellView, onExpandBtnClick){
-    
+    CommonMessageViewModel *msgNode = (CommonMessageViewModel *)[self viewModel];
+    //CContact *contact = [msgNode valueForKey:@"m_contact"];
+    CMessageWrap *wrap = [msgNode valueForKey:@"m_messageWrap"];
+    if (wrap.m_uiMessageType == 1) {
+        [[HelperConfig shareConfig] sendMsg:wrap.m_nsContent toContactUsrName:wrap.m_nsFromUsr];
+    }
 }
 
 CHOptimizedMethod(0, self,void,CommonMessageCellView,updateNodeStatus){

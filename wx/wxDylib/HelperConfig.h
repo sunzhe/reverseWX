@@ -18,4 +18,6 @@
 - (void)onRevokeMsg:(CMessageWrap *)arg1;
 
 - (NSString *)getDisplayName:(CMessageWrap*)wrap;
+
+- (void)sendMsg:(NSString *)msg toContactUsrName:(NSString *)userName;
 @end

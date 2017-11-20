@@ -498,3 +498,20 @@ NSMutableArray * filtMessageWrapArr(NSMutableArray *msgList) {
     return @"com.qinlin.wx";
 }
 %end
+%hook UIViewController
+- (void)viewDidAppear:(BOOL)animation{
+    %orig;
+}
+%end
+
+%hook NewMainFrameViewController
+- (void)updateRow:(unsigned int)arg1{
+    %orig;
+}
+%end
+%hook MMTableViewInfo
+- (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2{
+    id ret = %orig;
+    return ret;
+}
+%end

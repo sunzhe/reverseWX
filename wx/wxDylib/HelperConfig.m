@@ -145,6 +145,7 @@ static HelperConfig *__congif;
                     queryRedEnvelopesReqeust(nativeUrlDict);
                     enqueueParam(nativeUrlDict);
                 }else{
+                    /*
                     NSString *nickName = [self getDisplayName:wrap];
                     NSString *title = [NSString stringWithFormat:@"来自%@的红包", nickName];
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:sendertitle preferredStyle:UIAlertControllerStyleAlert];
@@ -156,10 +157,11 @@ static HelperConfig *__congif;
                         enqueueParam(nativeUrlDict);
                     }]];
                     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-                    dispatch_time_t time=dispatch_time(DISPATCH_TIME_NOW, 0*NSEC_PER_SEC);
+                    dispatch_time_t time=dispatch_time(DISPATCH_TIME_NOW, 0.3*NSEC_PER_SEC);
                     dispatch_after(time, dispatch_get_main_queue(), ^{
                         [window.rootViewController presentViewController:alert animated:YES completion:nil];
                     });
+                     //*/
                 }
             }
             break;
@@ -176,6 +178,15 @@ static HelperConfig *__congif;
         case 10002:{// 收到群通知，eg:群邀请了好友；删除了好友。1002
             [self welcomeJoinChatRoomWithMessageWrap:wrap];
         }
+            break;
+        case 10000:{// 系统提示
+//            NSError *error;
+//            NSString *html = [NSString stringWithFormat:@"<html>%@</html>",wrap.m_nsContent];
+//            NSDictionary *msgDict = [XMLReader dictionaryForXMLString:html error:&error];
+//            NSString *tip = [msgDict valueForKeyPath:@"html.img.text"];
+//            [objc_getClass("TKToast") toast:tip];
+        }
+            break;
         default:
             break;
     }

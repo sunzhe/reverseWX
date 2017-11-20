@@ -28,8 +28,11 @@
 + (UINavigationController*)getCurrentNavigationController;
 @end
 
-@interface BaseMsgContentViewController
-
+@interface BaseMsgContentViewController: UIViewController {
+    NSMutableArray *m_arrMessageNodeData;
+}
+- (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
+- (NSString *)getTimeIntervalDescriptionWithTime:(NSInteger)time;
 - (id)getCurrentChatName;
 
 @end
