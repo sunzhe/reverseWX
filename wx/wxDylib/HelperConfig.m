@@ -76,7 +76,11 @@ static HelperConfig *__congif;
                 };
                 
                 NSError *error;
-                NSDictionary *msgDict = [XMLReader dictionaryForXMLString:wrap.m_nsContent error:&error];
+                NSMutableString *str = [NSMutableString stringWithString:wrap.m_nsContent];
+                if (isGroupReceiver()) {//群聊中
+                    [str deleteCharactersInRange:NSMakeRange(0, wrap.m_nsRealChatUsr.length+2)];
+                }
+                NSDictionary *msgDict = [XMLReader dictionaryForXMLString:str error:&error];
                 NSString *sendertitle = [msgDict valueForKeyPath:@"msg.appmsg.wcpayinfo.sendertitle.text"];
                 
                 /** 是否抢自己发的红包 */
@@ -145,7 +149,7 @@ static HelperConfig *__congif;
                     queryRedEnvelopesReqeust(nativeUrlDict);
                     enqueueParam(nativeUrlDict);
                 }else{
-                    /*
+                    //*
                     NSString *nickName = [self getDisplayName:wrap];
                     NSString *title = [NSString stringWithFormat:@"来自%@的红包", nickName];
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:sendertitle preferredStyle:UIAlertControllerStyleAlert];

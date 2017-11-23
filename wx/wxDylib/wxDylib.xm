@@ -57,14 +57,20 @@
     
     BOOL (^shouldReceiveRedEnvelop)() = ^BOOL() {
         
-        // 手动抢红包
-        if (!mgrParams) { return NO; }
-        
         // 自己已经抢过
-        if ([responseDict[@"receiveStatus"] integerValue] == 2) { return NO; }
+        if ([responseDict[@"receiveStatus"] integerValue] == 2) {
+            [TKToast toast:@"不用点了这个红包已抢过了"];
+            return NO;
+        }
         
         // 红包被抢完
-        if ([responseDict[@"hbStatus"] integerValue] == 4) { return NO; }
+        if ([responseDict[@"hbStatus"] integerValue] == 4) {
+            [TKToast toast:@"手慢了红包已被抢完"];
+            return NO;
+        }
+        
+        // 手动抢红包
+        if (!mgrParams) { return NO; }
         
         // 没有这个字段会被判定为使用外挂
         if (!responseDict[@"timingIdentifier"]) { return NO; }
@@ -72,7 +78,7 @@
         if (mgrParams.isGroupSender) { // 自己发红包的时候没有 sign 字段
             return [WBRedEnvelopConfig sharedConfig].autoReceiveEnable;
         } else {
-            return [parseRequestSign() isEqualToString:mgrParams.sign] && [WBRedEnvelopConfig sharedConfig].autoReceiveEnable;
+            return [parseRequestSign() isEqualToString:mgrParams.sign];
         }
     };
     
@@ -87,6 +93,7 @@
         } else {
             [[WBRedEnvelopTaskManager sharedManager] addNormalTask:operation];
         }
+        [TKToast toast:@"我抢...."];
     }
 }
 

@@ -1277,8 +1277,8 @@
 					};
 					847BFDE81F6A1C8400735BB8 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = NK26XTE96R;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 825DHE6NL9;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1699,9 +1699,9 @@
 				MonkeyDevRespringOnInstall = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				PODS_ROOT = "${SRCROOT}/Pods";
-				PRODUCT_BUNDLE_IDENTIFIER = com.qinlin.wx;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.weixin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3ef0c48f-2158-4ac1-a2e9-f11f1e45b183";
+				PROVISIONING_PROFILE = "6f7eb5e7-d745-4f08-b358-6f3ffe03de83";
 				PROVISIONING_PROFILE_SPECIFIER = westudy_team;
 			};
 			name = Debug;
@@ -1712,7 +1712,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = wx/wx.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = NK26XTE96R;
+				DEVELOPMENT_TEAM = 825DHE6NL9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = wx/Info.plist;
 				MONKEYDEV_CLASS_DUMP = YES;
@@ -1725,10 +1725,10 @@
 				MonkeyDevInstallOnProfiling = YES;
 				MonkeyDevRespringOnInstall = YES;
 				PODS_ROOT = "${SRCROOT}/Pods";
-				PRODUCT_BUNDLE_IDENTIFIER = com.qinlin.wx;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.weixin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6a0532bf-4cdc-4cf8-a979-e0a7b55f2f16";
-				PROVISIONING_PROFILE_SPECIFIER = time_loop_team;
+				PROVISIONING_PROFILE = "6f7eb5e7-d745-4f08-b358-6f3ffe03de83";
+				PROVISIONING_PROFILE_SPECIFIER = westudy_team;
 			};
 			name = Release;
 		};
@@ -1736,7 +1736,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9C1C71F887933964C1C9CD67 /* Pods-wxDylib.debug.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = NK26XTE96R;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 825DHE6NL9;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				ENABLE_BITCODE = NO;
@@ -1781,7 +1782,8 @@
 					"-lsubstrate",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 			};
 			name = Debug;
@@ -1790,8 +1792,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6EE9191A48AD1EA5601CAB67 /* Pods-wxDylib.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = NK26XTE96R;
+				DEVELOPMENT_TEAM = 825DHE6NL9;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				ENABLE_BITCODE = NO;
@@ -1834,7 +1837,8 @@
 					"-lsubstrate",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
